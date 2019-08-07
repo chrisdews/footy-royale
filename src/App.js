@@ -1,7 +1,7 @@
 import React from 'react';
 import API from './adapters/API.js'
-import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import Home from './components/Home'
 import Game from './components/Game'
 
@@ -9,7 +9,7 @@ class App extends React.Component {
 
   state = {
     fixtures: [],
-    test: 'hi'
+    
   }
 
   componentDidMount = () => {
@@ -26,7 +26,7 @@ class App extends React.Component {
     <Router>
      <React.Fragment>
       <Route exact path='/' component={Home}/>
-      <Route exact path='/game' component={Game}/>
+      <Route exact path='/game' render={(props) => <Game {...props}/>}/>
      </React.Fragment>
     </Router>
     )
