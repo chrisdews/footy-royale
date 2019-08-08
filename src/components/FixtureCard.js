@@ -6,13 +6,14 @@ class FixtureCard extends React.Component {
     return (
       <>
         <Grid
-          columns={2}
-          style={{ height: "3vh" }}
+          columns={7}
+          style={{ minHeight: "4vh" }}
           textAlign="center"
           verticalAlign="middle"
         >
-          <Grid.Column>{this.props.fixture.team_h}</Grid.Column>
-          <Grid.Column>{this.props.fixture.team_a}</Grid.Column>
+          <Grid.Column width={5}>{this.props.fixture.team_h.name}<img src={ require(`../images/logos/${this.props.fixture.team_h.club_code}.png`) } /></Grid.Column>
+          <Grid.Column width={1}>vs</Grid.Column>
+          <Grid.Column width={5}>{this.props.fixture.team_a.name}<img src={ require(`../images/logos/${this.props.fixture.team_a.club_code}.png`) } /></Grid.Column>
         </Grid>
       </>
     );

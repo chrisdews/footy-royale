@@ -4,42 +4,42 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Home from './components/Home'
 import Game from './components/Game'
+import Loading from './components/Loading.js';
+
+
+const LazyComponent = (condition, component) => condition ? 
+component
+: <Loading />
 
 class App extends React.Component {
 
   state = {
-    fixtures: [],
-    teams: [],
-    premGameWeek: 3
+    allCurrentWeekData: null
+
     
   }
 
   componentDidMount = () => {
     console.log('app mounted')
-    this.fetchFixtures()
-    this.fetchTeams()
+    this.fetchAllCurrentWeekData()
   }
 
-  fetchFixtures = () => {
-    return API.fetchFixtures().then(fixtures => this.setState({fixtures}))
+  fetchAllCurrentWeekData = () => {
+    return API.fetchAllData().then(allCurrentWeekData => this.setState({allCurrentWeekData}))
   }
 
-  fetchTeams = () => {
-    return API.fetchTeams().then(teams => this.setState({teams}))
-  }
-
-  thisWeekFixtureFilter = () => {
-    return this.state.fixtures.filter(fixture => fixture.event === this.state.premGameWeek)
-  }
+  // leagueFilter = () => {
+  //   return this.state.allCurrentWeekData.filter()
+  // }
 
   render() { 
-    const thisWeekFixtures = this.thisWeekFixtureFilter()
+    const allCurrentWeekData = this.state.allCurrentWeekData
 
     return(
     <Router>
      <React.Fragment>
       <Route exact path='/' component={Home}/>
-      <Route exact path='/game' render={props => <Game {...props} fixtures={thisWeekFixtures}/>}/>
+      <Route exact path='/game' render={props => LazyComponent(allCurrentWeekData, <Game {...props} allCurrentWeekData={allCurrentWeekData}/>)}/>
      </React.Fragment>
     </Router>
     )

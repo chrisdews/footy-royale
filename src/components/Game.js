@@ -4,9 +4,19 @@ import FixtureCard from './FixtureCard'
 
 class Game extends React.Component {
 
-  
+  // state = {
+  //   allCurrentWeekData: []
+  // }
+  // componentDidUpdate (prevProps, prevState) {
+  //   if (prevProps.allCurrentWeekData !== this.props.allCurrentWeekData)
+  //   this.setState({
+  //     allCurrentWeekData: this.props.allCurrentWeekData
+  //   })
+  // }
 
   render() {
+
+    const allCurrentWeekData = this.props.allCurrentWeekData
     return (
      <>
       <Grid
@@ -21,7 +31,7 @@ class Game extends React.Component {
             FOOTY ROYALE
           </Header>
           <Header as="h5" textAlign="center" className="footy-subtitle">
-            ONLY THE STRONG SURVIVE
+            {allCurrentWeekData.league.name}
           </Header>
 
           
@@ -41,7 +51,7 @@ class Game extends React.Component {
           <Header as="h1" textAlign="center">
             Upcoming Fixtures
           </Header>
-          {this.props.fixtures.map(fixture => <FixtureCard key={fixture.id} fixture={fixture} />)}
+          {allCurrentWeekData.league.current_matches.map(fixture => <FixtureCard key={fixture.id} fixture={fixture} />)}
           
 
           
