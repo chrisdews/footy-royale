@@ -1,7 +1,11 @@
 import React from "react";
 import { Button, Grid, Header } from "semantic-ui-react";
+import FixtureCard from './FixtureCard'
 
 class Game extends React.Component {
+
+  
+
   render() {
     return (
      <>
@@ -37,6 +41,7 @@ class Game extends React.Component {
           <Header as="h1" textAlign="center">
             Upcoming Fixtures
           </Header>
+          {this.props.fixtures.map(fixture => <FixtureCard key={fixture.id} fixture={fixture} />)}
           
 
           
