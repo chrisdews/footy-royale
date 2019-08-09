@@ -1,7 +1,13 @@
 import React from "react";
-import { Button, Grid, Header } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 class FixtureCard extends React.Component {
+
+  clickHandler = (team) => {
+    this.props.teamSelector(team)
+  }
+
+
   render() {
     return (
       <>
@@ -11,9 +17,19 @@ class FixtureCard extends React.Component {
           textAlign="center"
           verticalAlign="middle"
         >
-          <Grid.Column width={5}>{this.props.fixture.team_h.name}<img src={ require(`../images/logos/${this.props.fixture.team_h.club_code}.png`) } /></Grid.Column>
+          <Grid.Column width={5}>
+            <div onClick={() => {this.clickHandler(this.props.fixture.team_h)}}>
+              {/* {this.props.fixture.team_h.name} */}
+              <img src={ require(`../images/logos/${this.props.fixture.team_h.club_code}.png`) } />
+            </div>
+          </Grid.Column>
           <Grid.Column width={1}>vs</Grid.Column>
-          <Grid.Column width={5}>{this.props.fixture.team_a.name}<img src={ require(`../images/logos/${this.props.fixture.team_a.club_code}.png`) } /></Grid.Column>
+          <Grid.Column width={5}>
+            <div onClick={() => {this.clickHandler(this.props.fixture.team_a)}}>
+              {/* {this.props.fixture.team_a.name} */}
+              <img src={ require(`../images/logos/${this.props.fixture.team_a.club_code}.png`) } />
+            </div>
+          </Grid.Column>
         </Grid>
       </>
     );
