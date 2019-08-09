@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Grid, Header, Image } from "semantic-ui-react";
+import { Button, Form, Grid, Header } from "semantic-ui-react";
 
 class Home extends React.Component {
   render() {

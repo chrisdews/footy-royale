@@ -20,14 +20,14 @@ class FixtureCard extends React.Component {
           <Grid.Column width={5}>
             <div onClick={() => {this.clickHandler(this.props.fixture.team_h)}}>
               {/* {this.props.fixture.team_h.name} */}
-              <img src={ require(`../images/logos/${this.props.fixture.team_h.club_code}.png`) } />
+              <img src={ require(`../images/logos/${this.props.fixture.team_h.club_code}.png`) } alt="team logo" />
             </div>
           </Grid.Column>
           <Grid.Column width={1}>vs</Grid.Column>
           <Grid.Column width={5}>
             <div onClick={() => {this.clickHandler(this.props.fixture.team_a)}}>
               {/* {this.props.fixture.team_a.name} */}
-              <img src={ require(`../images/logos/${this.props.fixture.team_a.club_code}.png`) } />
+              <img src={ require(`../images/logos/${this.props.fixture.team_a.club_code}.png`) } alt="team logo" />
             </div>
           </Grid.Column>
         </Grid>

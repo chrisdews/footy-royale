@@ -2,7 +2,8 @@ import React from "react";
 import { Grid, Header } from "semantic-ui-react";
 import FixtureCard from "./FixtureCard";
 import SelectedTeamCard from "./SelectedTeamCard";
-import WaitingSelection from "./WaitingSelection"
+import WaitingSelection from "./WaitingSelection";
+import User from "./User";
 
 
 const WaitingComponent = (condition, component) => condition ? component : <WaitingSelection />
@@ -70,12 +71,14 @@ class Game extends React.Component {
 
           <Grid.Column>
             <Header as="h1" textAlign="center">
-              The Surivors
+              The Survivors
             </Header>
+              {allCurrentWeekData.league.active_users.map(user => <User user={user}/>)}
 
             <Header as="h1" textAlign="center">
               The Fallen
             </Header>
+            {allCurrentWeekData.league.inactive_users.map(user => <User user={user}/>)}
           </Grid.Column>
         </Grid>
       </>
