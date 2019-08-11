@@ -18,7 +18,7 @@ class PreviousPredictionsContainer extends React.Component {
         >
           <Grid.Row>
             <div>
-            {this.props.allCurrentWeekData.league.user_predictions.map(pred => <PreviousPredictionsCard prediction={pred} allTeams={this.props.allCurrentWeekData.league.all_teams}/>)}
+            {this.props.previousUserPredictions.map(pred => <PreviousPredictionsCard prediction={pred} allTeams={this.props.allCurrentWeekData.league.all_teams}/>)}
             </div>
           </Grid.Row>
         </Grid>

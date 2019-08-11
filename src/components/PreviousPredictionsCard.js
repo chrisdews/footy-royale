@@ -18,7 +18,7 @@ class PreviousPredictionsCard extends React.Component {
               Round {this.props.prediction.royale_round}:{" "}
               {this.props.allTeams
                 .filter(team => team.id === team_id)
-                .map(team => team.name)}
+                .map(team => team.name + team.id)}
             </div>
           </Grid.Row>
         </Grid>

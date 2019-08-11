@@ -17,12 +17,12 @@ class SelectedTeamCard extends React.Component {
           <Grid.Row>
             <div>
               <div>
-                <img
+              {this.props.selectedTeam.team_id ? <img
                   src={require(`../images/logos/${
-                    this.props.selectedTeam.club_code
+                    this.props.selectedTeam.team_id
                   }.png`)}
                   alt="selected logo"
-                />
+                /> : 'select a team'}
               </div>
 
               <div>{this.props.selectedTeam.name}</div>

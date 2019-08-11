@@ -4,46 +4,63 @@ import FixtureCard from "./FixtureCard";
 import SelectedTeamCard from "./SelectedTeamCard";
 import WaitingSelection from "./WaitingSelection";
 import User from "./User";
-import PreviousPredictionsContainer from "./PreviousPredictionsContainer"
+import PreviousPredictionsContainer from "./PreviousPredictionsContainer";
 import API from "../adapters/API";
 
-
-const WaitingComponent = (condition, component) => condition ? component : <WaitingSelection />
+const WaitingComponent = (condition, component) =>
+  condition ? component : <WaitingSelection />;
 
 class Game extends React.Component {
   state = {
-    logged_in_user: {id: 1, name: 'Dewsy'}
+    logged_in_user: { id: 1, name: "Dewsy" },
+    previousUserPredictions: [],
   };
   // user is temporary until logins sorted
 
-  teamSelectorHome = (fixture) => {
-    this.setState({ selectedTeam: fixture.team_h, fixture: fixture});
+  componentDidMount = () => {
+    this.setState({
+      previousUserPredictions: this.props.allCurrentWeekData.league
+        .user_predictions,
+      selectedTeam: this.props.allCurrentWeekData.league
+      .user_predictions.find(pred => pred.royale_round === 1)
+      // this might be terrible
+    });
   };
 
-  teamSelectorAway = (fixture) => {
-    this.setState({ selectedTeam: fixture.team_a, fixture: fixture});
+  teamSelectorHome = fixture => {
+    this.setState({ selectedTeam: fixture.team_h, fixture: fixture });
+  };
+
+  teamSelectorAway = fixture => {
+    this.setState({ selectedTeam: fixture.team_a, fixture: fixture });
   };
 
   postPrediction = () => {
-    console.log('hi from click')
-    
+    console.log("hi from click");
+
     const newPredictionObj = {
-      'match_id': this.state.fixture.id,
-      'team_id': this.state.selectedTeam.id,
-      'user_id': this.state.logged_in_user.id,
-      'league_id': this.props.allCurrentWeekData.league.id,
-      'royale_round': this.props.allCurrentWeekData.league.round_number
-    }
-    console.log(newPredictionObj)
-    API.postPrediction(newPredictionObj).then(currentPrediction => this.setState({currentPrediction}))
-
-  }
-
-  
+      match_id: this.state.fixture.id,
+      team_id: this.state.selectedTeam.id,
+      user_id: this.state.logged_in_user.id,
+      league_id: this.props.allCurrentWeekData.league.id,
+      royale_round: this.props.allCurrentWeekData.league.round_number
+    };
+    console.log(newPredictionObj);
+    API.postPrediction(newPredictionObj).then(currentPrediction =>
+      this.setState({
+        previousUserPredictions: [
+          ...this.state.previousUserPredictions,
+          currentPrediction
+        ]
+      })
+    );
+  };
 
   render() {
     const selectedTeam = this.state.selectedTeam;
+    const previousUserPredictions = this.state.previousUserPredictions;
     const allCurrentWeekData = this.props.allCurrentWeekData;
+
     return (
       <>
         <Grid
@@ -63,8 +80,6 @@ class Game extends React.Component {
             <Header as="h4" textAlign="center" className="footy-subtitle">
               ROUND {allCurrentWeekData.league.round_number}
             </Header>
-
-
           </Grid.Column>
 
           <Grid.Column />
@@ -93,33 +108,46 @@ class Game extends React.Component {
             <Header as="h1" textAlign="center">
               Your Selection
             </Header>
-              <Grid.Row>
-            {WaitingComponent(selectedTeam, <SelectedTeamCard selectedTeam={this.state.selectedTeam} postPrediction={this.postPrediction} currentPrediction={this.state.currentPrediction}/>)} 
+            <Grid.Row>
+              {WaitingComponent(
+                selectedTeam,
+                <SelectedTeamCard
+                  selectedTeam={this.state.selectedTeam}
+                  postPrediction={this.postPrediction}
+                  currentPrediction={this.state.currentPrediction}
+                />
+              )}
             </Grid.Row>
 
             <Grid.Row>
-            <Header as="h1" textAlign="center">
-              Your Previous Selections
-            </Header>
-              
-              <PreviousPredictionsContainer
-                allCurrentWeekData={allCurrentWeekData}
-              />
-            
-            </Grid.Row>
+              <Header as="h1" textAlign="center">
+                Your Previous Selections
+              </Header>
 
+              {WaitingComponent(
+                previousUserPredictions,
+                <PreviousPredictionsContainer
+                  allCurrentWeekData={allCurrentWeekData}
+                  previousUserPredictions={this.state.previousUserPredictions}
+                />
+              )}
+            </Grid.Row>
           </Grid.Column>
 
           <Grid.Column>
             <Header as="h1" textAlign="center">
               The Survivors
             </Header>
-              {allCurrentWeekData.league.active_users.map(user => <User user={user}/>)}
+            {allCurrentWeekData.league.active_users.map(user => (
+              <User user={user} />
+            ))}
 
             <Header as="h1" textAlign="center">
               The Fallen
             </Header>
-            {allCurrentWeekData.league.inactive_users.map(user => <User user={user}/>)}
+            {allCurrentWeekData.league.inactive_users.map(user => (
+              <User user={user} />
+            ))}
           </Grid.Column>
         </Grid>
       </>
