@@ -21,9 +21,11 @@ class Game extends React.Component {
     this.setState({
       previousUserPredictions: this.props.allCurrentWeekData.league
         .user_predictions,
-      selectedTeam: this.props.allCurrentWeekData.league
+      currentPredictionPersist: this.props.allCurrentWeekData.league
       .user_predictions.find(pred => pred.royale_round === 1)
-      // this might be terrible
+      // sets state of current prediction so can show persisting prediction on log in.
+      // set this to equal royale round later
+      // NOT WORKING YET
     });
   };
 
@@ -45,7 +47,10 @@ class Game extends React.Component {
       league_id: this.props.allCurrentWeekData.league.id,
       royale_round: this.props.allCurrentWeekData.league.round_number
     };
-    console.log(newPredictionObj);
+
+    // if this.state.previousUserPredictions contains predictions with royale_round, do a patch instead of post.
+    // or maybe do this backend with first_or_create ruby
+    // if prediction has already been submitted, offer another link to PATCH 
     API.postPrediction(newPredictionObj).then(currentPrediction =>
       this.setState({
         previousUserPredictions: [

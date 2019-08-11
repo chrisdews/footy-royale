@@ -14,12 +14,21 @@ class PreviousPredictionsCard extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Row>
-            <div>
-              Round {this.props.prediction.royale_round}:{" "}
-              {this.props.allTeams
-                .filter(team => team.id === team_id)
-                .map(team => team.name + team.id)}
-            </div>
+            {this.props.predTeamID ? (
+              <div>
+                Round {this.props.prediction.royale_round}:{" "}
+                {this.props.allTeams
+                  .filter(team => team.id === team_id)
+                  .map(team => team.name)}
+                <br />
+                <img
+                  src={require(`../images/logos/${this.props.predTeamID}.png`)}
+                  alt="previous selected team logo"
+                />
+              </div>
+            ) : (
+              "Your selection was saved"
+            )}
           </Grid.Row>
         </Grid>
       </>
