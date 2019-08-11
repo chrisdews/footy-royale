@@ -2,11 +2,9 @@ import React from "react";
 import { Grid, Button } from "semantic-ui-react";
 
 class PreviousPredictionsCard extends React.Component {
-  
-
   render() {
-
-    const team_id = this.props.prediction.team_id
+    const team_id = this.props.prediction.team_id;
+    console.log(team_id);
 
     return (
       <>
@@ -17,7 +15,10 @@ class PreviousPredictionsCard extends React.Component {
         >
           <Grid.Row>
             <div>
-            {this.props.prediction.team_id}
+              Round {this.props.prediction.royale_round}:{" "}
+              {this.props.allTeams
+                .filter(team => team.id === team_id)
+                .map(team => team.name)}
             </div>
           </Grid.Row>
         </Grid>

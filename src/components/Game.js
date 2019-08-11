@@ -4,7 +4,7 @@ import FixtureCard from "./FixtureCard";
 import SelectedTeamCard from "./SelectedTeamCard";
 import WaitingSelection from "./WaitingSelection";
 import User from "./User";
-import PreviousPredictionsCard from "./PreviousPredictionsCard"
+import PreviousPredictionsContainer from "./PreviousPredictionsContainer"
 import API from "../adapters/API";
 
 
@@ -101,13 +101,11 @@ class Game extends React.Component {
             <Header as="h1" textAlign="center">
               Your Previous Selections
             </Header>
-              {allCurrentWeekData.league.map(key => (
-              <PreviousPredictionsCard
-                
-                prediction={key.user_predictions}
-                teams={key.}
+              
+              <PreviousPredictionsContainer
+                allCurrentWeekData={allCurrentWeekData}
               />
-            ))}
+            
             </Grid.Row>
 
           </Grid.Column>
