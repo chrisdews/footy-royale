@@ -1,9 +1,12 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, Button } from "semantic-ui-react";
 
 class SelectedTeamCard extends React.Component {
-  render() {
+  clickHandler = () => {
+    this.props.postPrediction();
+  };
 
+  render() {
     return (
       <>
         <Grid
@@ -13,13 +16,32 @@ class SelectedTeamCard extends React.Component {
         >
           <Grid.Row>
             <div>
-                
               <div>
-              <img src={ require(`../images/logos/${ this.props.selectedTeam.club_code}.png`) } alt="selected logo"/>
+                <img
+                  src={require(`../images/logos/${
+                    this.props.selectedTeam.club_code
+                  }.png`)}
+                  alt="selected logo"
+                />
+              </div>
+
+              <div>{this.props.selectedTeam.name}</div>
+              <br />
+              <div>
+                <Button
+                  onClick={() => {
+                    this.clickHandler();
+                  }}
+                >
+                  SAVE
+                </Button>
               </div>
 
               <div>
-              {this.props.selectedTeam.name}
+                {" "}
+                {this.props.currentPrediction && this.props.currentPrediction.prediction.team_id === this.props.selectedTeam.id
+                  ? `Your choice of ${this.props.selectedTeam.name} was saved for this week.`
+                  : "click save to confirm"}
               </div>
             </div>
           </Grid.Row>
