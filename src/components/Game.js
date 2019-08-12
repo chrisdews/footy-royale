@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Header } from "semantic-ui-react";
+import { Grid, Header, Button } from "semantic-ui-react";
 import FixtureCard from "./FixtureCard";
 import SelectedTeamCard from "./SelectedTeamCard";
 import WaitingSelection from "./WaitingSelection";
@@ -66,6 +66,8 @@ class Game extends React.Component {
     const previousUserPredictions = this.state.previousUserPredictions;
     const allCurrentWeekData = this.props.allCurrentWeekData;
 
+    
+
     return (
       <>
         <Grid
@@ -74,7 +76,10 @@ class Game extends React.Component {
           textAlign="center"
           verticalAlign="middle"
         >
-          <Grid.Column />
+          <Grid.Column>
+            Logged in: {this.state.logged_in_user.name}
+            {this.state.logged_in_user.id === 1 ? <Button href="/update">Add Results </Button> : null}
+          </Grid.Column>
           <Grid.Column>
             <Header as="h1" textAlign="center">
               FOOTY ROYALE
@@ -133,7 +138,7 @@ class Game extends React.Component {
                 previousUserPredictions,
                 <PreviousPredictionsContainer
                   allCurrentWeekData={allCurrentWeekData}
-                  previousUserPredictions={this.state.previousUserPredictions}
+                  previousUserPredictions={previousUserPredictions}
                 />
               )}
             </Grid.Row>
