@@ -1,6 +1,7 @@
 const allData = "http://localhost:3000/alldata";
 const predictionsUrl = "http://localhost:3000/predictions";
 const matchesUrl = "http://localhost:3000/matches";
+const leaguesUrl = "http://localhost:3000/leagues"
 
 const handleServerError = errors => {
   console.error('Error:', errors);
@@ -23,7 +24,6 @@ const postPrediction = (newPredictionObj) => fetch(predictionsUrl, {
   }
 )
 .then(resp => resp.json())
-
 .catch(handleServerError)
 
 const submitScore = (submitObj) => fetch(matchesUrl, {
@@ -36,13 +36,25 @@ const submitScore = (submitObj) => fetch(matchesUrl, {
   }
 )
 .then(resp => resp.json())
-
 .catch(handleServerError)
+
+const updateRound = (leagueObj) => fetch(leaguesUrl, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ leagueObj })
+  }
+)
+.then(resp => resp.json())
+.catch(handleServerError)
+
 
 
 
 export default {
   fetchAllData,
   postPrediction,
-  submitScore
+  submitScore,
+  updateRound
 };
