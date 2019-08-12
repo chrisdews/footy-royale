@@ -77,7 +77,7 @@ class Game extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Column>
-            Logged in: {this.state.logged_in_user.name}
+            Logged in: {this.state.logged_in_user.name}<br></br><br></br>
             {this.state.logged_in_user.id === 1 ? <Button href="/update">Add Results </Button> : null}
           </Grid.Column>
           <Grid.Column>
@@ -103,7 +103,7 @@ class Game extends React.Component {
         >
           <Grid.Column>
             <Header as="h1" textAlign="center">
-              Upcoming Fixtures
+              Week {allCurrentWeekData.league.round_number} Fixtures
             </Header>
             {allCurrentWeekData.league.current_matches.map(fixture => (
               <FixtureCard

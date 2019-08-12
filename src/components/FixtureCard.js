@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, Button } from "semantic-ui-react";
 
 class FixtureCard extends React.Component {
 
@@ -24,17 +24,19 @@ class FixtureCard extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Column width={5}>
-            <div onClick={() => {this.clickHandlerHome(this.props.fixture)}}>
-              {/* {this.props.fixture.team_h.name} */}
+            <Button onClick={() => {this.clickHandlerHome(this.props.fixture)}}>
+              
               <img src={ require(`../images/logos/${this.props.fixture.team_h.id}.png`) } alt="team logo" />
-            </div>
+              
+            </Button>
           </Grid.Column>
-          <Grid.Column width={1}>vs</Grid.Column>
+          <Grid.Column width={1}><h3>{this.props.fixture.team_h_score}</h3> vs <h3>{this.props.fixture.team_a_score}</h3></Grid.Column>
           <Grid.Column width={5}>
-            <div onClick={() => {this.clickHandlerAway(this.props.fixture)}}>
-              {/* {this.props.fixture.team_a.name} */}
+            <Button onClick={() => {this.clickHandlerAway(this.props.fixture)}}>
+              
               <img src={ require(`../images/logos/${this.props.fixture.team_a.id}.png`) } alt="team logo" />
-            </div>
+              
+            </Button>
           </Grid.Column>
         </Grid>
       </>
