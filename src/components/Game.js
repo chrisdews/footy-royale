@@ -14,19 +14,23 @@ class Game extends React.Component {
   state = {
     logged_in_user: { id: 1, name: "Dewsy" },
     previousUserPredictions: [],
+    userActive: 'waiting'
   };
   // user is temporary until logins sorted
 
   componentDidMount = () => {
     this.setState({
-      previousUserPredictions: this.props.allCurrentWeekData.league
-        .user_predictions,
-      currentPredictionPersist: this.props.allCurrentWeekData.league
-      .user_predictions.find(pred => pred.royale_round === 1)
+      previousUserPredictions: this.props.allCurrentWeekData.league.user_predictions,
+      // currentPredictionPersist: this.props.allCurrentWeekData.league.user_predictions.find(
+      //   pred => pred.royale_round === 1
+      // ),
+      
+      
       // sets state of current prediction so can show persisting prediction on log in.
       // set this to equal royale round later
       // NOT WORKING YET
     });
+
   };
 
   teamSelectorHome = fixture => {
@@ -50,7 +54,7 @@ class Game extends React.Component {
 
     // if this.state.previousUserPredictions contains predictions with royale_round, do a patch instead of post.
     // or maybe do this backend with first_or_create ruby
-    // if prediction has already been submitted, offer another link to PATCH 
+    // if prediction has already been submitted, offer another link to PATCH
     API.postPrediction(newPredictionObj).then(currentPrediction =>
       this.setState({
         previousUserPredictions: [
@@ -65,6 +69,7 @@ class Game extends React.Component {
     const selectedTeam = this.state.selectedTeam;
     const previousUserPredictions = this.state.previousUserPredictions;
     const allCurrentWeekData = this.props.allCurrentWeekData;
+    const userActive = this.props.allCurrentWeekData.league.user_league_current_user[0].user_active
 
     
 
@@ -77,8 +82,16 @@ class Game extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Column>
-            Logged in: {this.state.logged_in_user.name}<br></br><br></br>
-            {this.state.logged_in_user.id === 1 ? <Button href="/update">Add Results </Button> : null}
+            Logged in: {this.state.logged_in_user.name}
+            <br />
+            <br />
+            {userActive ? "FOOTY ROYALE continues for you. For now." : "You were defeated."}
+            <br />
+            {this.state.logged_in_user.id === 1 ? (
+              <Button href="/update">Add Results </Button>
+            ) : null}
+
+            
           </Grid.Column>
           <Grid.Column>
             <Header as="h1" textAlign="center">
@@ -118,16 +131,21 @@ class Game extends React.Component {
             <Header as="h1" textAlign="center">
               Your Selection
             </Header>
-            <Grid.Row>
+            
+            {userActive ? 
+              <Grid.Row>
               {WaitingComponent(
                 selectedTeam,
-                <SelectedTeamCard
-                  selectedTeam={this.state.selectedTeam}
-                  postPrediction={this.postPrediction}
-                  currentPrediction={this.state.currentPrediction}
-                />
-              )}
-            </Grid.Row>
+                  
+                  <SelectedTeamCard
+                    selectedTeam={this.state.selectedTeam}
+                    postPrediction={this.postPrediction}
+                    currentPrediction={this.state.currentPrediction}
+                  />
+                )}
+              </Grid.Row> : <div> YOU ARE OUT OF THE GAME </div> }
+              {console.log(this.state.userActive)}
+            
 
             <Grid.Row>
               <Header as="h1" textAlign="center">

@@ -1,10 +1,10 @@
 import React from "react";
-import { Grid, Button } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 class PreviousPredictionsCard extends React.Component {
   render() {
     const team_id = this.props.prediction.team_id;
-    console.log(team_id);
+    
 
     return (
       <>

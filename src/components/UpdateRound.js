@@ -48,6 +48,8 @@ class UpdateRound extends Component {
   };
 
   render() {
+    const allCurrentWeekData = this.props.allCurrentWeekData;
+
     return (
       <Grid
         columns={3}
@@ -59,33 +61,40 @@ class UpdateRound extends Component {
           <Header as="h1" textAlign="center">
             Current Fixtures
           </Header>
-
-          {this.props.allCurrentWeekData.league.current_matches.map(fixture => (
-            <>
-              <Form size="small" key="small" onSubmit={this.handleSubmitScore}>
-                <Form.Group>
-                  <Form.Field
-                    label={fixture.team_h.short_name}
-                    id={fixture.id}
-                    control="input"
-                    placeholder={fixture.team_h_score}
-                    onChange={this.handleHomeChange}
-                  />
-                  <Form.Field
-                    label={fixture.team_a.short_name}
-                    id={fixture.id}
-                    control="input"
-                    placeholder={fixture.team_a_score}
-                    onChange={this.handleAwayChange}
-                  />
-                  <Button type="submit" value="submit">
-                    Submit
-                  </Button>
-                </Form.Group>
-                <Divider hidden />
-              </Form>
-            </>
-          ))}
+          {allCurrentWeekData.league.current_matches ? (
+            allCurrentWeekData.league.current_matches.map(fixture => (
+              <>
+                <Form
+                  size="small"
+                  key="small"
+                  onSubmit={this.handleSubmitScore}
+                >
+                  <Form.Group>
+                    <Form.Field
+                      label={fixture.team_h.short_name}
+                      id={fixture.id}
+                      control="input"
+                      placeholder={fixture.team_h_score}
+                      onChange={this.handleHomeChange}
+                    />
+                    <Form.Field
+                      label={fixture.team_a.short_name}
+                      id={fixture.id}
+                      control="input"
+                      placeholder={fixture.team_a_score}
+                      onChange={this.handleAwayChange}
+                    />
+                    <Button type="submit" value="submit">
+                      Submit
+                    </Button>
+                  </Form.Group>
+                  <Divider hidden />
+                </Form>
+              </>
+            ))
+          ) : (
+            <div> Submitted </div>
+          )}
         </Grid.Column>
         <Grid.Column>
           <Divider hidden />
@@ -93,8 +102,7 @@ class UpdateRound extends Component {
             Update game to next round
           </Button>
           <div>
-            Current round Number:{" "}
-            {this.props.allCurrentWeekData.league.round_number}
+            Current round Number: {allCurrentWeekData.league.round_number}
           </div>
           <Divider hidden />
           <Button onClick={this.handleClickRemoveUpdate}>

@@ -28,9 +28,11 @@ class App extends React.Component {
 
   updateLeagueRound = () => {
     let newRoundNum = this.state.allCurrentWeekData.league.round_number + 1;
+    let newWeekNum = this.state.allCurrentWeekData.league.current_week + 1;
     const leagueObj = {
       id: this.state.allCurrentWeekData.league.id,
-      round_number: newRoundNum
+      round_number: newRoundNum,
+      current_week: newWeekNum 
     }
     API.updateRound(leagueObj).then(allCurrentWeekData => this.setState({ allCurrentWeekData })
     );
@@ -38,9 +40,11 @@ class App extends React.Component {
 
   reverseLeagueRound = () => {
     let newRoundNum = this.state.allCurrentWeekData.league.round_number - 1;
+    let newWeekNum = this.state.allCurrentWeekData.league.current_week - 1;
     const leagueObj = {
       id: this.state.allCurrentWeekData.league.id,
-      round_number: newRoundNum
+      round_number: newRoundNum,
+      current_week: newWeekNum
     }
     API.updateRound(leagueObj).then(allCurrentWeekData => this.setState({ allCurrentWeekData })
     );
