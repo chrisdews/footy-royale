@@ -14,23 +14,22 @@ class Game extends React.Component {
   state = {
     logged_in_user: { id: 1, name: "Dewsy" },
     previousUserPredictions: [],
-    userActive: 'waiting'
+    userActive: "waiting"
   };
   // user is temporary until logins sorted
 
   componentDidMount = () => {
     this.setState({
-      previousUserPredictions: this.props.allCurrentWeekData.league.user_predictions,
+      previousUserPredictions: this.props.allCurrentWeekData.league
+        .user_predictions
       // currentPredictionPersist: this.props.allCurrentWeekData.league.user_predictions.find(
       //   pred => pred.royale_round === 1
       // ),
-      
-      
+
       // sets state of current prediction so can show persisting prediction on log in.
       // set this to equal royale round later
       // NOT WORKING YET
     });
-
   };
 
   teamSelectorHome = fixture => {
@@ -69,9 +68,8 @@ class Game extends React.Component {
     const selectedTeam = this.state.selectedTeam;
     const previousUserPredictions = this.state.previousUserPredictions;
     const allCurrentWeekData = this.props.allCurrentWeekData;
-    const userActive = this.props.allCurrentWeekData.league.user_league_current_user[0].user_active
-
-    
+    const userActive = this.props.allCurrentWeekData.league
+      .user_league_current_user[0].user_active;
 
     return (
       <>
@@ -85,13 +83,13 @@ class Game extends React.Component {
             Logged in: {this.state.logged_in_user.name}
             <br />
             <br />
-            {userActive ? "FOOTY ROYALE continues for you. For now." : "You were defeated."}
+            {userActive
+              ? "FOOTY ROYALE continues for you. For now."
+              : "You were defeated."}
             <br />
             {this.state.logged_in_user.id === 1 ? (
               <Button href="/update">Add Results </Button>
             ) : null}
-
-            
           </Grid.Column>
           <Grid.Column>
             <Header as="h1" textAlign="center">
@@ -118,34 +116,41 @@ class Game extends React.Component {
             <Header as="h1" textAlign="center">
               Week {allCurrentWeekData.league.round_number} Fixtures
             </Header>
-            {allCurrentWeekData.league.current_matches.map(fixture => (
-              <FixtureCard
-                key={fixture.id}
-                fixture={fixture}
-                teamSelectorHome={this.teamSelectorHome}
-                teamSelectorAway={this.teamSelectorAway}
-              />
-            ))}
+
+            {WaitingComponent(
+              allCurrentWeekData,
+              allCurrentWeekData.league.current_matches.map(fixture => (
+                <FixtureCard
+                  key={fixture.id}
+                  fixture={fixture}
+                  teamSelectorHome={this.teamSelectorHome}
+                  teamSelectorAway={this.teamSelectorAway}
+                  previousUserPredictions={this.state.previousUserPredictions}
+                />
+              ))
+            )}
           </Grid.Column>
           <Grid.Column>
             <Header as="h1" textAlign="center">
               Your Selection
             </Header>
-            
-            {userActive ? 
+
+            {userActive ? (
               <Grid.Row>
-              {WaitingComponent(
-                selectedTeam,
-                  
+                {WaitingComponent(
+                  selectedTeam,
+
                   <SelectedTeamCard
                     selectedTeam={this.state.selectedTeam}
                     postPrediction={this.postPrediction}
                     currentPrediction={this.state.currentPrediction}
                   />
                 )}
-              </Grid.Row> : <div> YOU ARE OUT OF THE GAME </div> }
-              {console.log(this.state.userActive)}
-            
+              </Grid.Row>
+            ) : (
+              <div> YOU ARE OUT OF THE GAME </div>
+            )}
+            {console.log(this.state.userActive)}
 
             <Grid.Row>
               <Header as="h1" textAlign="center">
