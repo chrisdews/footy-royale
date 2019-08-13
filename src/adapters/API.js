@@ -26,8 +26,8 @@ const postPrediction = (newPredictionObj) => fetch(predictionsUrl, {
 .then(resp => resp.json())
 .catch(handleServerError)
 
-const submitScore = (submitObj) => fetch(matchesUrl, {
-  method: 'POST',
+const submitScore = (submitObj) => fetch(`${matchesUrl}/${submitObj.id}`, {
+  method: 'PATCH',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -38,8 +38,8 @@ const submitScore = (submitObj) => fetch(matchesUrl, {
 .then(resp => resp.json())
 .catch(handleServerError)
 
-const updateRound = (leagueObj) => fetch(leaguesUrl, {
-  method: 'POST',
+const updateRound = (leagueObj) => fetch(`${leaguesUrl}/${leagueObj.id}`, {
+  method: 'PATCH',
   headers: {
     'Content-Type': 'application/json'
   },
