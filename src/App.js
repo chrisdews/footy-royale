@@ -12,12 +12,31 @@ const LazyComponent = (condition, component) =>
 
 class App extends React.Component {
   state = {
-    allCurrentWeekData: null
+    allCurrentWeekData: null,
+    currentUser: null
+  };
+
+  setLoggedInUser = user => {
+    this.setState({ currentUser: user }, () => {
+      this.fetchAllCurrentWeekData();
+    });
   };
 
   componentDidMount = () => {
     console.log("app mounted");
-    this.fetchAllCurrentWeekData();
+    API.validateUser()
+    .then(data => {
+      if (data.error) {
+        console.error(data.error)
+        // display some error
+        this.props.history.push('/login')
+      } else {
+        this.setState({ currentUser: data }, () => {
+          this.fetchAllCurrentWeekData();
+        });
+        // this.props.history.push('/dashboard')
+      }
+    })
   };
 
   fetchAllCurrentWeekData = () => {
@@ -32,9 +51,10 @@ class App extends React.Component {
     const leagueObj = {
       id: this.state.allCurrentWeekData.league.id,
       round_number: newRoundNum,
-      current_week: newWeekNum 
-    }
-    API.updateRound(leagueObj).then(allCurrentWeekData => this.setState({ allCurrentWeekData })
+      current_week: newWeekNum
+    };
+    API.updateRound(leagueObj).then(allCurrentWeekData =>
+      this.setState({ allCurrentWeekData })
     );
   };
 
@@ -45,12 +65,11 @@ class App extends React.Component {
       id: this.state.allCurrentWeekData.league.id,
       round_number: newRoundNum,
       current_week: newWeekNum
-    }
-    API.updateRound(leagueObj).then(allCurrentWeekData => this.setState({ allCurrentWeekData })
+    };
+    API.updateRound(leagueObj).then(allCurrentWeekData =>
+      this.setState({ allCurrentWeekData })
     );
-  }
-
-
+  };
 
   render() {
     const allCurrentWeekData = this.state.allCurrentWeekData;
@@ -58,14 +77,24 @@ class App extends React.Component {
     return (
       <Router>
         <React.Fragment>
-          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path="/"
+            render={props =>
+              LazyComponent(
+                true,
+                <Home {...props} setLoggedInUser={this.setLoggedInUser}/>
+              )
+            }
+            
+          />
           <Route
             exact
             path="/game"
             render={props =>
               LazyComponent(
                 allCurrentWeekData,
-                <Game {...props} allCurrentWeekData={allCurrentWeekData} />
+                <Game {...props} allCurrentWeekData={allCurrentWeekData} currentUser={this.state.currentUser} />
               )
             }
           />

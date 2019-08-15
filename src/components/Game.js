@@ -12,9 +12,9 @@ const WaitingComponent = (condition, component) =>
 
 class Game extends React.Component {
   state = {
-    logged_in_user: { id: 1, name: "Dewsy" },
+    // logged_in_user: { id: 1, name: "Dewsy" },
     previousUserPredictions: [],
-    userActive: "waiting"
+    userActive: "waiting", 
   };
   // user is temporary until logins sorted
 
@@ -46,7 +46,7 @@ class Game extends React.Component {
     const newPredictionObj = {
       match_id: this.state.fixture.id,
       team_id: this.state.selectedTeam.id,
-      user_id: this.state.logged_in_user.id,
+      user_id: this.props.currentUser.user.id,
       league_id: this.props.allCurrentWeekData.league.id,
       royale_round: this.props.allCurrentWeekData.league.round_number
     };
@@ -68,8 +68,8 @@ class Game extends React.Component {
     const selectedTeam = this.state.selectedTeam;
     const previousUserPredictions = this.state.previousUserPredictions;
     const allCurrentWeekData = this.props.allCurrentWeekData;
-    const userActive = this.props.allCurrentWeekData.league
-      .user_league_current_user[0].user_active;
+    const userActive = this.props.allCurrentWeekData.league.user_league_current_user[0].user_active;
+    const currentUserId = this.props.allCurrentWeekData.league.user_league_current_user[0].id
 
     return (
       <>
@@ -80,15 +80,15 @@ class Game extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Column>
-            Logged in: {this.state.logged_in_user.name}
+            Logged in: {currentUser.username}
             <br />
             <br />
             {userActive
               ? "FOOTY ROYALE continues for you. For now."
               : "You were defeated."}
             <br />
-            {this.state.logged_in_user.id === 1 ? (
-              <Button red inverted href="/update">Add Results </Button>
+            {currentUserId === 1 ? (
+              <Button href="/update">Add Results </Button>
             ) : null}
           </Grid.Column>
           <Grid.Column>
