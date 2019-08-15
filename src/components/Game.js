@@ -88,17 +88,17 @@ class Game extends React.Component {
               : "You were defeated."}
             <br />
             {this.state.logged_in_user.id === 1 ? (
-              <Button href="/update">Add Results </Button>
+              <Button red inverted href="/update">Add Results </Button>
             ) : null}
           </Grid.Column>
           <Grid.Column>
             <Header as="h1" textAlign="center">
               FOOTY ROYALE
             </Header>
-            <Header as="h3" textAlign="center" className="footy-subtitle">
+            <Header as="h3" textAlign="center" className="text-yellow" >
               {allCurrentWeekData.league.name}
             </Header>
-            <Header as="h4" textAlign="center" className="footy-subtitle">
+            <Header as="h4" textAlign="center" className="text-yellow">
               ROUND {allCurrentWeekData.league.round_number}
             </Header>
           </Grid.Column>
@@ -114,7 +114,7 @@ class Game extends React.Component {
         >
           <Grid.Column>
             <Header as="h1" textAlign="center">
-              Week {allCurrentWeekData.league.round_number} Fixtures
+              Week {allCurrentWeekData.league.current_week} Fixtures
             </Header>
 
             {WaitingComponent(

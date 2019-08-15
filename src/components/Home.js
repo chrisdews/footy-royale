@@ -29,7 +29,7 @@ class Home extends React.Component {
               </Form.Field>
               
               
-              <Button animated="fade" basic color='yellow' href='/game' type="submit">
+              <Button animated="fade" color='yellow' href='/game' type="submit">
                 <Button.Content visible> SIGN UP NOW </Button.Content>
                 <Button.Content hidden> IF YOU WANT TO </Button.Content>
               </Button>

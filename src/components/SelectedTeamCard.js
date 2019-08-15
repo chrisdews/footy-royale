@@ -17,18 +17,21 @@ class SelectedTeamCard extends React.Component {
           <Grid.Row>
             <div>
               <div>
-              <img
+                <img
                   src={require(`../images/logos/${
                     this.props.selectedTeam.id
                   }.png`)}
                   alt="selected logo"
-                /> 
+                />
               </div>
 
               <div>{this.props.selectedTeam.name}</div>
               <br />
               <div>
                 <Button
+                  inverted
+                  inverted
+                  color="yellow"
                   onClick={() => {
                     this.clickHandler();
                   }}
@@ -39,8 +42,12 @@ class SelectedTeamCard extends React.Component {
 
               <div>
                 {" "}
-                {this.props.currentPrediction && this.props.currentPrediction.prediction.team_id === this.props.selectedTeam.id
-                  ? `Your choice of ${this.props.selectedTeam.name} was saved for this week.`
+                {this.props.currentPrediction &&
+                this.props.currentPrediction.prediction.team_id ===
+                  this.props.selectedTeam.id
+                  ? `Your choice of ${
+                      this.props.selectedTeam.name
+                    } was saved for this week.`
                   : "click save to confirm"}
               </div>
             </div>
