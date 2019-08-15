@@ -25,7 +25,8 @@ const postPrediction = newPredictionObj =>
   fetch(predictionsUrl, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: localStorage.token
     },
     body: JSON.stringify({ newPredictionObj })
   })
@@ -36,7 +37,8 @@ const submitScore = submitObj =>
   fetch(`${matchesUrl}/${submitObj.id}`, {
     method: "PATCH",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: localStorage.token
     },
     body: JSON.stringify({ submitObj })
   })
@@ -47,7 +49,8 @@ const updateRound = leagueObj =>
   fetch(`${leaguesUrl}/${leagueObj.id}`, {
     method: "PATCH",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: localStorage.token
     },
     body: JSON.stringify({ leagueObj })
   })

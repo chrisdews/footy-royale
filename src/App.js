@@ -22,6 +22,7 @@ class App extends React.Component {
     });
   };
 
+
   componentDidMount = () => {
     console.log("app mounted");
     API.validateUser()

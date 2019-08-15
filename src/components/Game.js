@@ -19,6 +19,8 @@ class Game extends React.Component {
   // user is temporary until logins sorted
 
   componentDidMount = () => {
+    console.log(this.props.allCurrentWeekData.league.user_predictions)
+    // NOT WORKING THURS EVE
     this.setState({
       previousUserPredictions: this.props.allCurrentWeekData.league
         .user_predictions
@@ -46,10 +48,12 @@ class Game extends React.Component {
     const newPredictionObj = {
       match_id: this.state.fixture.id,
       team_id: this.state.selectedTeam.id,
-      user_id: this.props.currentUser.user.id,
+      user_id: this.props.currentUser.id,
       league_id: this.props.allCurrentWeekData.league.id,
       royale_round: this.props.allCurrentWeekData.league.round_number
     };
+
+    console.log(newPredictionObj)
 
     // if this.state.previousUserPredictions contains predictions with royale_round, do a patch instead of post.
     // or maybe do this backend with first_or_create ruby
@@ -69,7 +73,6 @@ class Game extends React.Component {
     const previousUserPredictions = this.state.previousUserPredictions;
     const allCurrentWeekData = this.props.allCurrentWeekData;
     const userActive = this.props.allCurrentWeekData.league.user_league_current_user[0].user_active;
-    const currentUserId = this.props.allCurrentWeekData.league.user_league_current_user[0].id
 
     return (
       <>
@@ -80,14 +83,14 @@ class Game extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Column>
-            Logged in: {currentUser.username}
+            Logged in: {this.props.currentUser.username}
             <br />
             <br />
             {userActive
               ? "FOOTY ROYALE continues for you. For now."
               : "You were defeated."}
             <br />
-            {currentUserId === 1 ? (
+            {this.props.currentUser.id === 1 ? (
               <Button href="/update">Add Results </Button>
             ) : null}
           </Grid.Column>

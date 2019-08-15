@@ -26,6 +26,7 @@ class FixtureCard extends React.Component {
 
     const homeTeamGrey = previousUserPredictions.includes(homeTeamId);
     const awayTeamGrey = previousUserPredictions.includes(awayTeamId);
+    console.log(homeTeamGrey, awayTeamGrey, homeTeamId, awayTeamId, previousUserPredictions)
 
     return (
       <>
@@ -38,6 +39,7 @@ class FixtureCard extends React.Component {
           <Grid.Column width={5}>
             <Button
              color='yellow'
+             disabled={homeTeamGrey}
               
               onClick={
                 homeTeamGrey
