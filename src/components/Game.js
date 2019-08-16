@@ -77,8 +77,8 @@ class Game extends React.Component {
     return (
       <>
         <Grid
-          columns={3}
-          style={{ height: "15vh" }}
+          stackable columns={3}
+          style={{ height: "20vh" }}
           textAlign="center"
           verticalAlign="middle"
         >
@@ -94,14 +94,15 @@ class Game extends React.Component {
               <Button href="/update">Add Results </Button>
             ) : null}
           </Grid.Column>
+
           <Grid.Column>
             <Header as="h1" textAlign="center">
               FOOTY ROYALE
             </Header>
-            <Header as="h3" textAlign="center" className="text-yellow" >
+            <Header as="h2" textAlign="center" >
               {allCurrentWeekData.league.name}
             </Header>
-            <Header as="h4" textAlign="center" className="text-yellow">
+            <Header as="h3" textAlign="center">
               ROUND {allCurrentWeekData.league.round_number}
             </Header>
           </Grid.Column>
@@ -110,13 +111,14 @@ class Game extends React.Component {
         </Grid>
 
         <Grid
-          columns={3}
+          stackable columns={3}
           style={{ height: "85vh" }}
           textAlign="center"
           verticalAlign="top"
         >
           <Grid.Column>
-            <Header as="h1" textAlign="center">
+            <Header as="h4" textAlign="center" >
+            
               Week {allCurrentWeekData.league.current_week} Fixtures
             </Header>
 
@@ -134,7 +136,7 @@ class Game extends React.Component {
             )}
           </Grid.Column>
           <Grid.Column>
-            <Header as="h1" textAlign="center">
+            <Header as="h4" textAlign="center">
               Your Selection
             </Header>
 
@@ -156,7 +158,7 @@ class Game extends React.Component {
             {console.log(this.state.userActive)}
 
             <Grid.Row>
-              <Header as="h1" textAlign="center">
+              <Header as="h4" textAlign="center">
                 Your Previous Selections
               </Header>
 
@@ -171,14 +173,14 @@ class Game extends React.Component {
           </Grid.Column>
 
           <Grid.Column>
-            <Header as="h1" textAlign="center">
+            <Header as="h4" textAlign="center">
               The Survivors
             </Header>
             {allCurrentWeekData.league.active_users.map(user => (
               <User user={user} />
             ))}
 
-            <Header as="h1" textAlign="center">
+            <Header as="h4" textAlign="center">
               The Fallen
             </Header>
             {allCurrentWeekData.league.inactive_users.map(user => (

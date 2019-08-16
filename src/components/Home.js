@@ -5,8 +5,9 @@ import {
   Grid,
   Header,
   Modal,
-  Icon,
-  Image
+  Image,
+  Responsive,
+  Segment
 } from "semantic-ui-react";
 import { BrowserRouter } from "react-router-dom";
 
@@ -60,15 +61,15 @@ class Home extends React.Component {
     return (
       <>
         <Grid
-          columns={3}
+          
           style={{ height: "100vh" }}
           textAlign="center"
           verticalAlign="middle"
+          stackable columns={3}
         >
-          <Grid.Column />
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h1" textAlign="center">
-              FOOTY ROYALE
+            <Header as="h1" textAlign="center" className="slide-in-left">
+              FOOTY
             </Header>
 
             <Grid
@@ -77,6 +78,7 @@ class Home extends React.Component {
               style={{ height: "10vh" }}
               textAlign="center"
               verticalAlign="middle"
+              stackable columns={3}
             >
               <Grid.Row>
                 <Image
@@ -92,10 +94,7 @@ class Home extends React.Component {
                   id="football-3"
                 />
 
-                <Image
-                  src={require("../images/crown.png")}
-                  id="crown"
-                />
+                <Image src={require("../images/crown.png")} id="crown" />
                 <Image
                   src={require("../images/football.png")}
                   id="football-4"
@@ -107,8 +106,8 @@ class Home extends React.Component {
               </Grid.Row>
             </Grid>
 
-            <Header as="h5" textAlign="center" className="footy-subtitle">
-              ONLY THE STRONG SURVIVE
+            <Header as="h1" textAlign="center" className="slide-in-right">
+              ROYALE{" "}
             </Header>
 
             <Form size="mini" onSubmit={this.handleSubmitLogin}>
@@ -135,7 +134,16 @@ class Home extends React.Component {
               </Button>
             </Form>
 
-            <Modal trigger={<Button>SIGN UP</Button>} basic size="small">
+            <Modal
+              trigger={
+                <Button id="sign-up-button" animated="fade" color="yellow">
+                  <Button.Content visible> SIGN UP </Button.Content>
+                <Button.Content hidden> DO IT </Button.Content>
+                </Button>
+              }
+              basic
+              size="small"
+            >
               <Header content="SIGN UP TO FOOTY ROYALE" />
               <Modal.Content>
                 <Form size="mini" onSubmit={this.handleSubmitSignup}>
@@ -181,7 +189,6 @@ class Home extends React.Component {
               </Modal.Content>
             </Modal>
           </Grid.Column>
-          <Grid.Column />
         </Grid>
       </>
     );
