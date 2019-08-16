@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, Form, Grid, Header, Modal, Icon } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Modal,
+  Icon,
+  Image
+} from "semantic-ui-react";
 import { BrowserRouter } from "react-router-dom";
 
 import { Redirect } from "react-router";
@@ -18,7 +26,7 @@ class Home extends React.Component {
     e.preventDefault();
     const newuserObj = {
       username: this.state.username,
-      password: this.state.password,
+      password: this.state.password
     };
 
     API.userLogin(newuserObj)
@@ -62,6 +70,43 @@ class Home extends React.Component {
             <Header as="h1" textAlign="center">
               FOOTY ROYALE
             </Header>
+
+            <Grid
+              id="football-animation-container"
+              columns={3}
+              style={{ height: "10vh" }}
+              textAlign="center"
+              verticalAlign="middle"
+            >
+              <Grid.Row>
+                <Image
+                  src={require("../images/football.png")}
+                  id="football-1"
+                />
+                <Image
+                  src={require("../images/football.png")}
+                  id="football-2"
+                />
+                <Image
+                  src={require("../images/football.png")}
+                  id="football-3"
+                />
+
+                <Image
+                  src={require("../images/crown.png")}
+                  id="crown"
+                />
+                <Image
+                  src={require("../images/football.png")}
+                  id="football-4"
+                />
+                <Image
+                  src={require("../images/football.png")}
+                  id="football-5"
+                />
+              </Grid.Row>
+            </Grid>
+
             <Header as="h5" textAlign="center" className="footy-subtitle">
               ONLY THE STRONG SURVIVE
             </Header>
@@ -93,35 +138,47 @@ class Home extends React.Component {
             <Modal trigger={<Button>SIGN UP</Button>} basic size="small">
               <Header content="SIGN UP TO FOOTY ROYALE" />
               <Modal.Content>
-              <Form size="mini" onSubmit={this.handleSubmitSignup}>
-              <Form.Field>
-                <input
-                  type="text"
-                  value={this.state.value}
-                  onChange={this.handleChange}
-                  placeholder="username"
-                />
-              </Form.Field>
-              <Form.Field>
-                <input type="password" label="password" placeholder="password" />
-              </Form.Field>
-              <Form.Field>
-                <input type="password" label="confirm password" placeholder="confirm password" />
-              </Form.Field>
+                <Form size="mini" onSubmit={this.handleSubmitSignup}>
+                  <Form.Field>
+                    <input
+                      type="text"
+                      value={this.state.value}
+                      onChange={this.handleChange}
+                      placeholder="username"
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <input
+                      type="password"
+                      label="password"
+                      placeholder="password"
+                    />
+                  </Form.Field>
+                  <Form.Field>
+                    <input
+                      type="password"
+                      label="confirm password"
+                      placeholder="confirm password"
+                    />
+                  </Form.Field>
 
-              <Button
-                animated="fade"
-                color="yellow"
-                type="submit"
-                value="Submit"
-                disabled={!this.state.username || !this.state.password || !this.state.checkpassword || this.state.password != this.state.checkpassword}
-              >
-                <Button.Content visible> SIGN UP NOW </Button.Content>
-                <Button.Content hidden> IF YOU WANT TO </Button.Content>
-              </Button>
-            </Form>
+                  <Button
+                    animated="fade"
+                    color="yellow"
+                    type="submit"
+                    value="Submit"
+                    disabled={
+                      !this.state.username ||
+                      !this.state.password ||
+                      !this.state.checkpassword ||
+                      this.state.password != this.state.checkpassword
+                    }
+                  >
+                    <Button.Content visible> SIGN UP NOW </Button.Content>
+                    <Button.Content hidden> IF YOU WANT TO </Button.Content>
+                  </Button>
+                </Form>
               </Modal.Content>
-              
             </Modal>
           </Grid.Column>
           <Grid.Column />
