@@ -89,6 +89,18 @@ class App extends React.Component {
             }
             
           />
+
+<Route
+            exact
+            path="/login"
+            render={props =>
+              LazyComponent(
+                true,
+                <Home {...props} setLoggedInUser={this.setLoggedInUser}/>
+              )
+            }
+            
+          />
           <Route
             exact
             path="/game"

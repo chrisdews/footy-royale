@@ -4,8 +4,9 @@ class WaitingSelection extends Component {
 
     render() {
         return (
-            <div>
-                Select a Team!
+            <div className="waiting-team-select">
+                <h3>Select a Team!</h3>
+                <h1> ← </h1>
             </div>
         );
     }

@@ -103,6 +103,9 @@ const userSignUp = newuserObj =>
           .catch(handleServerError)
   }
 
+  const clearToken = () => localStorage.removeItem('token')
+
+
 export default {
   fetchAllData,
   postPrediction,
@@ -110,5 +113,6 @@ export default {
   updateRound,
   userSignUp,
   userLogin,
-  validateUser
+  validateUser,
+  clearToken
 };

@@ -29,7 +29,8 @@ class SelectedTeamCard extends React.Component {
               <br />
               <div>
                 <Button
-                  inverted
+                  
+                  color="yellow"
                   onClick={() => {
                     this.clickHandler();
                   }}

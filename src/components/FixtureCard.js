@@ -35,11 +35,13 @@ class FixtureCard extends React.Component {
           style={{ minHeight: "4vh" }}
           textAlign="center"
           verticalAlign="middle"
+          className="fixtures-container"
         >
-          <Grid.Column width={5}>
+          <Grid.Column width={4}>
             <Button
              color='yellow'
              disabled={homeTeamGrey}
+             className="fixture-team-button"
               
               onClick={
                 homeTeamGrey
@@ -58,11 +60,15 @@ class FixtureCard extends React.Component {
               />
             </Button>
           </Grid.Column>
-          <Grid.Column width={2}>
-            <span>{this.props.fixture.team_h_score} vs {this.props.fixture.team_a_score}</span>
-          </Grid.Column>
-          <Grid.Column width={5}>
+          <Grid.Column width={4}>
+          <div>
+            <span className="score-number">{this.props.fixture.team_h_score} </span><span className="vs-text">vs</span><span className="score-number"> {this.props.fixture.team_a_score}</span>
+          
+            </div>
+            </Grid.Column>
+          <Grid.Column width={4}>
             <Button
+            className="fixture-team-button"
               color="yellow"
               onClick={
                 awayTeamGrey

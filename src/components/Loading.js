@@ -5,7 +5,6 @@ class Loading extends Component {
 
     
   render() {
-    debugger
     return (
 
         <Grid
