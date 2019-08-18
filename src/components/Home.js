@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Modal,
-  Image,
-  Responsive,
-  Segment
-} from "semantic-ui-react";
+import { Button, Form, Grid, Header, Modal, Image } from "semantic-ui-react";
 import { BrowserRouter } from "react-router-dom";
 
 import { Redirect } from "react-router";
@@ -20,7 +11,8 @@ class Home extends React.Component {
     username: "",
     password: "1234",
     checkpassword: "1234",
-    redirect: false
+    redirect: false,
+    delayLogin: false
   };
 
   handleSubmitLogin = e => {
@@ -32,7 +24,14 @@ class Home extends React.Component {
 
     API.userLogin(newuserObj)
       .then(user => this.props.setLoggedInUser(user))
-      .then(this.setState({ redirect: true }));
+      .then(this.setState({ delayLogin: true }))
+      .then(this.delayRedirect());
+  };
+
+  delayRedirect = () => {
+    setTimeout(() => {
+      this.setState({ redirect: true });
+    }, 1300);
   };
 
   handleSubmitSignup = e => {
@@ -58,14 +57,16 @@ class Home extends React.Component {
       return <Redirect to="/game" />;
     }
 
+    const delayLogin = this.state.delayLogin;
+
     return (
       <>
         <Grid
-          
           style={{ height: "100vh" }}
           textAlign="center"
           verticalAlign="middle"
-          stackable columns={3}
+          stackable
+          columns={3}
         >
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as="h1" textAlign="center" className="slide-in-left">
@@ -78,7 +79,8 @@ class Home extends React.Component {
               style={{ height: "10vh" }}
               textAlign="center"
               verticalAlign="middle"
-              stackable columns={3}
+              stackable
+              columns={3}
             >
               <Grid.Row>
                 <Image
@@ -92,9 +94,14 @@ class Home extends React.Component {
                 <Image
                   src={require("../images/football.png")}
                   id="football-3"
+                  className={delayLogin ? "roll-out-right" : null}
                 />
 
-                <Image src={require("../images/crown.png")} id="crown" />
+                <Image
+                  src={require("../images/crown.png")}
+                  id="crown"
+                  className={delayLogin ? "fade-out" : null}
+                />
                 <Image
                   src={require("../images/football.png")}
                   id="football-4"
@@ -128,6 +135,7 @@ class Home extends React.Component {
                 color="yellow"
                 type="submit"
                 value="Submit"
+                loading={delayLogin}
               >
                 <Button.Content visible> LOG IN NOW </Button.Content>
                 <Button.Content hidden> IF YOU WANT TO </Button.Content>
@@ -138,7 +146,7 @@ class Home extends React.Component {
               trigger={
                 <Button id="sign-up-button" animated="fade" color="yellow">
                   <Button.Content visible> SIGN UP </Button.Content>
-                <Button.Content hidden> DO IT </Button.Content>
+                  <Button.Content hidden> DO IT </Button.Content>
                 </Button>
               }
               basic

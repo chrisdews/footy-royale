@@ -78,9 +78,9 @@ class Game extends React.Component {
       <>
         <Grid
           stackable columns={3}
-          style={{ height: "20vh" }}
           textAlign="center"
           verticalAlign="middle"
+          className="footy-title-container"
         >
           <Grid.Column>
             Logged in: {this.props.currentUser.username}
@@ -112,7 +112,6 @@ class Game extends React.Component {
 
         <Grid
           stackable columns={3}
-          style={{ height: "85vh" }}
           textAlign="center"
           verticalAlign="top"
         >
@@ -155,7 +154,6 @@ class Game extends React.Component {
             ) : (
               <div> YOU ARE OUT OF THE GAME </div>
             )}
-            {console.log(this.state.userActive)}
 
             <Grid.Row>
               <Header as="h4" textAlign="center">

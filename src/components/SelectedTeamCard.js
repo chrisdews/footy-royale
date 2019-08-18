@@ -30,8 +30,6 @@ class SelectedTeamCard extends React.Component {
               <div>
                 <Button
                   inverted
-                  inverted
-                  color="yellow"
                   onClick={() => {
                     this.clickHandler();
                   }}
@@ -49,6 +47,7 @@ class SelectedTeamCard extends React.Component {
                       this.props.selectedTeam.name
                     } was saved for this week.`
                   : "click save to confirm"}
+                  {/* this isn't working because not using currentPrediction yet */}
               </div>
             </div>
           </Grid.Row>
