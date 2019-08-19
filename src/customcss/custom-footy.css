@@ -261,14 +261,41 @@ h4 {
 }
 
 .waiting-team-select {
-  min-height: 400px;
+  height: 400px;
+  max-width: 300px;
   border: 2px solid #fffb82;
-  margin-left: 40px;
-  margin-right: 40px;
+  /* margin-left: 40px;
+  margin-right: 40px; */
+  margin: auto;
   padding: 30px;
   padding-top: 120px;
   border-radius: 10px;
 
+}
+
+.team-badge-container {
+  height: 400px;
+  width: 300px;
+  border: 2px solid #fffb82;
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+}
+
+
+.team-badge-image {
+  
+  position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    
+  
+  /* margin-left: 40px;
+  margin-right: 40px; */
+  
 }
 
 /* =========== media queries ============= */

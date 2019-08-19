@@ -16,11 +16,11 @@ class SelectedTeamCard extends React.Component {
         >
           <Grid.Row>
             <div>
-              <div>
-                <img
-                  src={require(`../images/logos/${
+              <div className="team-badge-container">
+                <img className="team-badge-image"
+                  src={require(`../images/badges/${
                     this.props.selectedTeam.id
-                  }.png`)}
+                  }.jpg`)}
                   alt="selected logo"
                 />
               </div>

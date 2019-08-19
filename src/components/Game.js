@@ -160,8 +160,8 @@ class Game extends React.Component {
                 <Button
                   animated="fade"
                   color="yellow"
-                  type="submit"
-                  value="Submit"
+                  // type="submit"
+                  // value="Submit"
                   onClick={this.handleClick}
                   href="/login"
                 >
