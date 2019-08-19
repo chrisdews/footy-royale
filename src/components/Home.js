@@ -44,7 +44,8 @@ class Home extends React.Component {
 
     API.userSignUp(newuserObj)
       .then(user => this.props.setLoggedInUser(user))
-      .then(this.setState({ redirect: true }));
+      .then(this.setState({ delayLogin: true }))
+      .then(this.delayRedirect());
   };
 
   handleChange = e => {
@@ -68,7 +69,7 @@ class Home extends React.Component {
           stackable
           columns={3}
         >
-          <Grid.Column style={{ maxWidth: 450 }}>
+          <Grid.Column>
             <Header as="h1" textAlign="center" className="slide-in-left">
               FOOTY
             </Header>
@@ -76,7 +77,7 @@ class Home extends React.Component {
             <Grid
               id="football-animation-container"
               columns={3}
-              style={{ height: "10vh" }}
+              
               textAlign="center"
               verticalAlign="middle"
               stackable
@@ -152,48 +153,111 @@ class Home extends React.Component {
               basic
               size="small"
             >
-              <Header content="SIGN UP TO FOOTY ROYALE" />
               <Modal.Content>
-                <Form size="mini" onSubmit={this.handleSubmitSignup}>
-                  <Form.Field>
-                    <input
-                      type="text"
-                      value={this.state.value}
-                      onChange={this.handleChange}
-                      placeholder="username"
-                    />
-                  </Form.Field>
-                  <Form.Field>
-                    <input
-                      type="password"
-                      label="password"
-                      placeholder="password"
-                    />
-                  </Form.Field>
-                  <Form.Field>
-                    <input
-                      type="password"
-                      label="confirm password"
-                      placeholder="confirm password"
-                    />
-                  </Form.Field>
+                <Grid
+                  
+                  textAlign="center"
+                  verticalAlign="middle"
+                  stackable
+                  columns={3}
+                >
+                  <Grid.Column className="sign-up-container">
+                    <Header
+                      as="h1"
+                      textAlign="center"
+                      className="slide-in-right"
+                    >
+                      FOOTY
+                    </Header>
+                    <Grid
+                      id="football-animation-container"
+                      columns={3}
+                      textAlign="center"
+                      verticalAlign="middle"
+                      stackable
+                      columns={3}
+                    >
+                      <Grid.Row>
+                        <Image
+                          src={require("../images/football.png")}
+                          id="football-sign-up-1"
+                        />
+                        <Image
+                          src={require("../images/football.png")}
+                          id="football-sign-up-2"
+                        />
+                        <Image
+                          src={require("../images/football.png")}
+                          id="football-sign-up-3"
+                          className={delayLogin ? "bounce-out-top" : null}
+                        />
 
-                  <Button
-                    animated="fade"
-                    color="yellow"
-                    type="submit"
-                    value="Submit"
-                    disabled={
-                      !this.state.username ||
-                      !this.state.password ||
-                      !this.state.checkpassword ||
-                      this.state.password != this.state.checkpassword
-                    }
-                  >
-                    <Button.Content visible> SIGN UP NOW </Button.Content>
-                    <Button.Content hidden> IF YOU WANT TO </Button.Content>
-                  </Button>
-                </Form>
+                        <Image
+                          src={require("../images/crown.png")}
+                          id="crown"
+                          className={delayLogin ? "fade-out" : null}
+                        />
+                        <Image
+                          src={require("../images/football.png")}
+                          id="football-sign-up-4"
+                        />
+                        <Image
+                          src={require("../images/football.png")}
+                          id="football-sign-up-5"
+                        />
+                      </Grid.Row>
+                    </Grid>
+                    <Header
+                      as="h1"
+                      textAlign="center"
+                      className="slide-in-left royale-title-home"
+                    >
+                      ROYALE
+                    </Header>
+
+                    <Form size="mini" onSubmit={this.handleSubmitSignup}>
+                      <Form.Field>
+                        <input
+                          type="text"
+                          value={this.state.value}
+                          onChange={this.handleChange}
+                          placeholder="username"
+                        />
+                      </Form.Field>
+                      <Form.Field>
+                        <input
+                          type="password"
+                          label="password"
+                          placeholder="password"
+                        />
+                      </Form.Field>
+                      <Form.Field>
+                        <input
+                          type="password"
+                          label="confirm password"
+                          placeholder="confirm password"
+                        />
+                      </Form.Field>
+
+                      <Button
+                        animated="fade"
+                        color="yellow"
+                        type="submit"
+                        value="Submit"
+                        disabled={
+                          !this.state.username ||
+                          !this.state.password ||
+                          !this.state.checkpassword ||
+                          this.state.password != this.state.checkpassword
+                        }
+                        loading={delayLogin}
+                      >
+                        <Button.Content visible> SIGN UP NOW </Button.Content>
+                        <Button.Content hidden> IF YOU WANT TO </Button.Content>
+                      </Button>
+                    </Form>
+                  </Grid.Column>
+                </Grid>
               </Modal.Content>
             </Modal>
           </Grid.Column>
