@@ -69,8 +69,8 @@ class Game extends React.Component {
   };
 
   handleClick = () => {
-    API.clearToken()
-  }
+    API.clearToken();
+  };
 
   render() {
     const selectedTeam = this.state.selectedTeam;
@@ -89,7 +89,7 @@ class Game extends React.Component {
           className="footy-title-container"
         >
           <Grid.Column className="game-page-balls">
-          <Grid
+            <Grid
               id="football-animation-container"
               columns={3}
               style={{ height: "10vh" }}
@@ -133,9 +133,9 @@ class Game extends React.Component {
               </Grid.Row>
 
               <Grid.Row>
-              <Responsive minWidth={1000}>
-              <h5>PICK A WINNING TEAM THIS GAME-WEEK OR YOU'RE OUT!</h5>
-              </Responsive>
+                <Responsive minWidth={1000}>
+                  <h5>PICK A WINNING TEAM THIS GAME-WEEK OR YOU'RE OUT!</h5>
+                </Responsive>
               </Grid.Row>
             </Grid>
           </Grid.Column>
@@ -181,10 +181,10 @@ class Game extends React.Component {
             <br />
 
             <Responsive minWidth={770}>
-            {userActive
-              ? "FOOTY ROYALE continues for you. For now."
-              : "You were defeated."}
-              </Responsive>
+              {userActive
+                ? "FOOTY ROYALE continues for you. For now."
+                : "You were defeated."}
+            </Responsive>
             <br />
           </Grid.Column>
         </Grid>
@@ -228,36 +228,60 @@ class Game extends React.Component {
             ) : (
               <div> YOU ARE OUT OF THE GAME </div>
             )}
-
-            <Grid.Row>
-              <Header as="h4" textAlign="center">
-                Your Previous Selections
-              </Header>
-
-              {WaitingComponent(
-                previousUserPredictions,
-                <PreviousPredictionsContainer
-                  allCurrentWeekData={allCurrentWeekData}
-                  previousUserPredictions={previousUserPredictions}
-                />
-              )}
-            </Grid.Row>
           </Grid.Column>
 
           <Grid.Column>
             <Header as="h4" textAlign="center">
               The Survivors
             </Header>
-            {allCurrentWeekData.league.active_users.map(user => (
-              <User user={user} />
-            ))}
 
-            <Header as="h4" textAlign="center">
+            <Grid
+              stackable
+              columns={3}
+              textAlign="center"
+              verticalAlign="middle"
+            >
+              {allCurrentWeekData.league.active_users.map(user => (
+                <Grid.Column className="survivor-names">
+                  <User user={user} />
+                </Grid.Column>
+              ))}
+            </Grid>
+
+            <Header as="h4" textAlign="center" className="stats-title">
               The Fallen
             </Header>
-            {allCurrentWeekData.league.inactive_users.map(user => (
-              <User user={user} />
-            ))}
+
+            <Grid
+              stackable
+              columns={3}
+              textAlign="center"
+              verticalAlign="middle"
+            >
+              {allCurrentWeekData.league.inactive_users.map(user => (
+                <Grid.Column className="fallen-names">
+                  <User user={user} />
+                </Grid.Column>
+              ))}
+            </Grid>
+
+            <Grid.Row>
+              <Header as="h4" textAlign="center" className="stats-title">
+                Your Previous Selections
+              </Header>
+
+              
+                {WaitingComponent(
+                  previousUserPredictions,
+                  
+                    <PreviousPredictionsContainer
+                      allCurrentWeekData={allCurrentWeekData}
+                      previousUserPredictions={previousUserPredictions}
+                    />
+                  
+                )}
+              
+            </Grid.Row>
           </Grid.Column>
         </Grid>
       </>

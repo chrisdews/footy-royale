@@ -16,11 +16,13 @@ class PreviousPredictionsCard extends React.Component {
           <Grid.Row>
             {this.props.predTeamID ? (
               <div>
-                Round {this.props.prediction.royale_round}:{" "}
-                {this.props.allTeams
+              <h5>
+                Round {this.props.prediction.royale_round}{" "}
+                {/* {this.props.allTeams
                   .filter(team => team.id === team_id)
-                  .map(team => team.name)}
-                <br />
+                  .map(team => team.name)} */}
+                  </h5>
+                
                 <img
                   src={require(`../images/logos/${this.props.predTeamID}.png`)}
                   alt="previous selected team logo"

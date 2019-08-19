@@ -1,7 +1,7 @@
 body {
   background-image: url("../images/salmon-background3.jpg");
   background-repeat: no-repeat;
-  background-size: 100% 300%;
+  background-size: 100% 400%;
 }
 
 h1 {
@@ -39,7 +39,7 @@ h3 {
 
 h4 {
   font-family: "Permanent Marker", cursive !important;
-  font-size: 1.5em !important;
+  font-size: 2em !important;
 
   color: #fffb82 !important;
   text-shadow: #000 0px 0px 1px;
@@ -56,6 +56,19 @@ h4 {
   -webkit-font-smoothing: antialiased;
   margin-top: 0px !important;
 }
+
+h5 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1em !important;
+
+  color: rgb(89, 89, 89) !important;
+  /* text-shadow: #fffb82 0px 0px 1px !important; */
+  /* -webkit-font-smoothing: antialiased; */
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  text-transform: uppercase !important;
+}
+
 
 .game-loading {
   margin-top: 500px;
@@ -78,7 +91,26 @@ h4 {
   animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s both;
 }
 
+.survivor-names{
+  padding: 3px !important;
+  margin: 3px !important;
+  color: green;
+  text-transform: uppercase !important;
+  font-size: 1.25em;
+}
 
+.fallen-names{
+  padding: 3px !important;
+  margin: 3px !important;
+  color: red;
+  text-transform: uppercase !important;
+  text-decoration: line-through;
+  font-size: 1.25em;
+}
+
+.stats-title {
+  margin-top: 10px !important;
+}
 
 #root {
   margin: 10px;
@@ -261,20 +293,20 @@ h4 {
 }
 
 .waiting-team-select {
-  height: 400px;
+  height: 200px;
   max-width: 300px;
   border: 2px solid #fffb82;
   /* margin-left: 40px;
   margin-right: 40px; */
   margin: auto;
   padding: 30px;
-  padding-top: 120px;
+  padding-top: 60px;
   border-radius: 10px;
 
 }
 
 .team-badge-container {
-  height: 400px;
+  height: 200px;
   width: 300px;
   border: 2px solid #fffb82;
   overflow: hidden;
@@ -325,6 +357,19 @@ h4 {
   }
   .footy-title-container {
     height: 200px;
+  }
+
+  .waiting-team-select {
+    height: 400px;
+    padding-top: 120px;
+    
+    
+  
+  }
+  
+  .team-badge-container {
+    height: 400px;
+    
   }
 }
 

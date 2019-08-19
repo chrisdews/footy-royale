@@ -12,15 +12,22 @@ class PreviousPredictionsContainer extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Row>
-            <div>
+            <Grid
+              stackable
+              columns={3}
+              textAlign="center"
+              verticalAlign="middle"
+            >
               {this.props.previousUserPredictions.map(pred => (
-                <PreviousPredictionsCard
-                  prediction={pred}
-                  predTeamID={pred.team_id}
-                  allTeams={this.props.allCurrentWeekData.league.all_teams}
-                />
+                <Grid.Column>
+                  <PreviousPredictionsCard
+                    prediction={pred}
+                    predTeamID={pred.team_id}
+                    allTeams={this.props.allCurrentWeekData.league.all_teams}
+                  />
+                </Grid.Column>
               ))}
-            </div>
+            </Grid>
           </Grid.Row>
         </Grid>
       </>

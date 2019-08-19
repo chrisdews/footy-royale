@@ -25,7 +25,7 @@ class SelectedTeamCard extends React.Component {
                 />
               </div>
 
-              <div>{this.props.selectedTeam.name}</div>
+              <h3>{this.props.selectedTeam.short_name}</h3>
               <br />
               <div>
                 <Button
@@ -39,7 +39,7 @@ class SelectedTeamCard extends React.Component {
                 </Button>
               </div>
 
-              <div>
+              {/* <div>
                 {" "}
                 {this.props.currentPrediction &&
                 this.props.currentPrediction.prediction.team_id ===
@@ -48,8 +48,8 @@ class SelectedTeamCard extends React.Component {
                       this.props.selectedTeam.name
                     } was saved for this week.`
                   : "click save to confirm"}
-                  {/* this isn't working because not using currentPrediction yet */}
-              </div>
+                  this isn't working because not using currentPrediction yet
+              </div> */}
             </div>
           </Grid.Row>
         </Grid>
