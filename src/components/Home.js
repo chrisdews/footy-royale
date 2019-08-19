@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Form, Grid, Header, Modal, Image } from "semantic-ui-react";
-import { BrowserRouter } from "react-router-dom";
+
 
 import { Redirect } from "react-router";
 
