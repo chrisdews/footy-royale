@@ -164,6 +164,7 @@ class Home extends React.Component {
               }
               basic
               size="small"
+              closeIcon
             >
               <Modal.Content>
                 <Grid

@@ -112,7 +112,7 @@ class Game extends React.Component {
                 <Image
                   src={require("../images/football.png")}
                   id="football-3"
-                  className="shake-horizontal"
+                  className="roll-in-left"
                 />
 
                 {/* <Image
@@ -170,7 +170,7 @@ class Game extends React.Component {
                   {this.props.currentUser.username}{" "}
                 </Button.Content>
               </Button>
-              {this.props.currentUser.id === 1 ? (
+              {this.props.currentUser.username === 'dewsy' ? (
                 <Button href="/update">Add Results </Button>
               ) : null}
             </Responsive>
@@ -229,6 +229,21 @@ class Game extends React.Component {
           </Grid.Column>
 
           <Grid.Column>
+
+          <Grid.Row>
+              <Header as="h4" textAlign="center" className="stats-title">
+                Your Previous Selections
+              </Header>
+
+              {WaitingComponent(
+                previousUserPredictions,
+
+                <PreviousPredictionsContainer
+                  allCurrentWeekData={allCurrentWeekData}
+                  previousUserPredictions={previousUserPredictions}
+                />
+              )}
+            </Grid.Row>
             <Header as="h4" textAlign="center">
               The Survivors
             </Header>
@@ -263,20 +278,7 @@ class Game extends React.Component {
               ))}
             </Grid>
 
-            <Grid.Row>
-              <Header as="h4" textAlign="center" className="stats-title">
-                Your Previous Selections
-              </Header>
-
-              {WaitingComponent(
-                previousUserPredictions,
-
-                <PreviousPredictionsContainer
-                  allCurrentWeekData={allCurrentWeekData}
-                  previousUserPredictions={previousUserPredictions}
-                />
-              )}
-            </Grid.Row>
+            
           </Grid.Column>
         </Grid>
       </>
