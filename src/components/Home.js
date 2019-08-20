@@ -1,6 +1,13 @@
 import React from "react";
-import { Button, Form, Grid, Header, Modal, Image, Segment } from "semantic-ui-react";
-
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Modal,
+  Image,
+  Segment
+} from "semantic-ui-react";
 
 import { Redirect } from "react-router";
 
@@ -25,7 +32,10 @@ class Home extends React.Component {
     API.userLogin(newuserObj)
       .then(user => this.props.setLoggedInUser(user))
       .then(() => this.setState({ delayLogin: true }))
-      .then(this.delayRedirect);
+      .then(this.delayRedirect)
+      .catch(e => {
+        this.setState({ errors: e });
+      });
   };
 
   delayRedirect = () => {
@@ -47,9 +57,8 @@ class Home extends React.Component {
       .then(() => this.setState({ delayLogin: true }))
       .then(this.delayRedirect)
       .catch(e => {
-        this.setState({errors: e})
-      })
-      
+        this.setState({ errors: e });
+      });
   };
 
   handleChange = e => {
@@ -81,7 +90,6 @@ class Home extends React.Component {
             <Grid
               id="football-animation-container"
               columns={3}
-              
               textAlign="center"
               verticalAlign="middle"
               stackable
@@ -159,7 +167,6 @@ class Home extends React.Component {
             >
               <Modal.Content>
                 <Grid
-                  
                   textAlign="center"
                   verticalAlign="middle"
                   stackable
@@ -225,7 +232,7 @@ class Home extends React.Component {
                           type="text"
                           value={this.state.value}
                           onChange={this.handleChange}
-                          placeholder="username"
+                          placeholder={this.state.username}
                         />
                       </Form.Field>
                       <Form.Field>
@@ -259,14 +266,15 @@ class Home extends React.Component {
                         <Button.Content visible> SIGN UP NOW </Button.Content>
                         <Button.Content hidden> IF YOU WANT TO </Button.Content>
                       </Button>
-                      {
-                        this.state.errors && <Segment inverted>{this.state.errors}</Segment>
-                      }
+                      {this.state.errors && (
+                        <Segment inverted>{this.state.errors}</Segment>
+                      )}
                     </Form>
                   </Grid.Column>
                 </Grid>
               </Modal.Content>
             </Modal>
+            {this.state.errors && <div>{this.state.errors}</div>}
           </Grid.Column>
         </Grid>
       </>

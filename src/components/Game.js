@@ -6,7 +6,7 @@ import WaitingSelection from "./WaitingSelection";
 import User from "./User";
 import PreviousPredictionsContainer from "./PreviousPredictionsContainer";
 import API from "../adapters/API";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const WaitingComponent = (condition, component) =>
   condition ? component : <WaitingSelection />;
@@ -72,7 +72,6 @@ class Game extends React.Component {
   handleClick = () => {
     API.clearToken();
   };
-  
 
   render() {
     const selectedTeam = this.state.selectedTeam;
@@ -93,7 +92,6 @@ class Game extends React.Component {
           <Grid.Column className="game-page-balls">
             <Grid
               id="football-animation-container"
-              
               style={{ height: "10vh" }}
               textAlign="center"
               verticalAlign="middle"
@@ -155,29 +153,26 @@ class Game extends React.Component {
           </Grid.Column>
 
           <Grid.Column>
-            <Responsive minWidth={1000}>
-              <h3>
-                {" "}
-                {this.props.currentUser.username}{" "}
-                <Button
-                  animated="fade"
-                  color="yellow"
-                  // type="submit"
-                  // value="Submit"
-                  onClick={this.handleClick}
-                  as={Link}
-                  to="/login"
-                >
-                  <Button.Content visible> LOG OUT</Button.Content>
-                  <Button.Content hidden>
-                    {" "}
-                    {this.props.currentUser.username}{" "}
-                  </Button.Content>
-                </Button>
-                {this.props.currentUser.id === 1 ? (
-                  <Button href="/update">Add Results </Button>
-                ) : null}
-              </h3>
+            <Responsive minWidth={500}>
+              <h3> {this.props.currentUser.username} </h3>
+              <Button
+                animated="fade"
+                color="yellow"
+                // type="submit"
+                // value="Submit"
+                onClick={this.handleClick}
+                as={Link}
+                to="/login"
+              >
+                <Button.Content visible> LOG OUT</Button.Content>
+                <Button.Content hidden>
+                  {" "}
+                  {this.props.currentUser.username}{" "}
+                </Button.Content>
+              </Button>
+              {this.props.currentUser.id === 1 ? (
+                <Button href="/update">Add Results </Button>
+              ) : null}
             </Responsive>
             <br />
 
@@ -273,17 +268,14 @@ class Game extends React.Component {
                 Your Previous Selections
               </Header>
 
-              
-                {WaitingComponent(
-                  previousUserPredictions,
-                  
-                    <PreviousPredictionsContainer
-                      allCurrentWeekData={allCurrentWeekData}
-                      previousUserPredictions={previousUserPredictions}
-                    />
-                  
-                )}
-              
+              {WaitingComponent(
+                previousUserPredictions,
+
+                <PreviousPredictionsContainer
+                  allCurrentWeekData={allCurrentWeekData}
+                  previousUserPredictions={previousUserPredictions}
+                />
+              )}
             </Grid.Row>
           </Grid.Column>
         </Grid>

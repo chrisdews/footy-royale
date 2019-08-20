@@ -1,7 +1,8 @@
+const base_url = process.env.REACT_APP_DEV
+  ? "http://localhost:3000"
+  : "https://footy-royale-backend.herokuapp.com";
 
-const base_url = process.env.REACT_APP_DEV ? 'http://localhost:3000' : 'https://footy-royale-backend.herokuapp.com'
-
-const allData = `${base_url}/alldata`
+const allData = `${base_url}/alldata`;
 const predictionsUrl = `${base_url}/predictions`;
 const matchesUrl = `${base_url}/matches`;
 const leaguesUrl = `${base_url}/leagues`;
@@ -11,22 +12,21 @@ const validateUrl = `${base_url}/validate`;
 
 const jsonify = res => {
   if (res.ok) {
-    return res.json()
+    return res.json();
   } else {
     try {
-      return res.json()
-        .then(data => {
-          throw data.errors
-        })
-    } catch(e) {
-      throw (["Oops something went wrong"])
+      return res.json().then(data => {
+        throw data.errors;
+      });
+    } catch (e) {
+      throw ["Oops something went wrong"];
     }
   }
-}
+};
 
 const handleServerError = errors => {
-  if (errors.toString() == 'SyntaxError: Unexpected end of JSON input') {
-    throw (["Oops something went wrong"])
+  if (errors.toString() == "SyntaxError: Unexpected end of JSON input") {
+    throw ["Oops something went wrong"];
   }
   throw errors;
 };
@@ -81,20 +81,20 @@ const handleUser = data => {
   if (data.token) {
     localStorage.token = data.token;
   }
-  return data.user
-}
+  return data.user;
+};
 
 const userLogin = newuserObj =>
-fetch(loginUrl, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({ user: newuserObj })
-})
-  .then(jsonify)
-  .then(handleUser)
-  .catch(handleServerError);
+  fetch(loginUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ user: newuserObj })
+  })
+    .then(jsonify)
+    .then(handleUser)
+    .catch(handleServerError);
 
 const userSignUp = newuserObj =>
   fetch(usersUrl, {
@@ -108,21 +108,24 @@ const userSignUp = newuserObj =>
     .then(handleUser)
     .catch(handleServerError);
 
-    const validateUser = () => {
-      if (!localStorage.getItem('token') || localStorage.getItem('token') == 'undefined') 
-        return Promise.reject()
-  
-      return fetch(validateUrl, {
-          headers: {
-            Authorization: localStorage.token
-          }
-      }).then(jsonify)
-          .then(handleUser)
-          .catch(handleServerError)
-  }
+const validateUser = () => {
+  if (
+    !localStorage.getItem("token") ||
+    localStorage.getItem("token") == "undefined"
+  )
+    return Promise.reject();
 
-  const clearToken = () => localStorage.removeItem('token')
+  return fetch(validateUrl, {
+    headers: {
+      Authorization: localStorage.token
+    }
+  })
+    .then(jsonify)
+    .then(handleUser)
+    .catch(handleServerError);
+};
 
+const clearToken = () => localStorage.removeItem("token");
 
 export default {
   fetchAllData,
