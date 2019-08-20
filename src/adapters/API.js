@@ -61,6 +61,12 @@ const updateRound = leagueObj =>
     .then(resp => resp.json())
     .catch(handleServerError);
 
+const handleUser = data => {
+  if (data.token) {
+    localStorage.token = data.token;
+  }
+  return data.user
+}
 
 const userLogin = newuserObj =>
 fetch(loginUrl, {
@@ -71,10 +77,7 @@ fetch(loginUrl, {
   body: JSON.stringify({ user: newuserObj })
 })
   .then(resp => resp.json())
-  .then(data => {
-    localStorage.token = data.token;
-    return data.user
-  })
+  .then(handleUser)
   .catch(handleServerError);
 
 const userSignUp = newuserObj =>
@@ -86,24 +89,19 @@ const userSignUp = newuserObj =>
     body: JSON.stringify({ user: newuserObj })
   })
     .then(resp => resp.json())
-    .then(data => {
-      localStorage.token = data.token;
-      return data.user
-    })
+    .then(handleUser)
     .catch(handleServerError);
 
     const validateUser = () => {
-      if (!localStorage.getItem('token')) return Promise.resolve({ error: 'no token' })
+      if (!localStorage.getItem('token') || localStorage.getItem('token') == 'undefined') 
+        return Promise.resolve({ error: 'no token' })
   
       return fetch(validateUrl, {
           headers: {
             Authorization: localStorage.token
           }
       }).then(resp => resp.json())
-          .then(data => {
-              localStorage.setItem('token', data.token)
-              return data.user
-          })
+          .then(handleUser)
           .catch(handleServerError)
   }
 
