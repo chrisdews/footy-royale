@@ -71,7 +71,7 @@ class Home extends React.Component {
           textAlign="center"
           verticalAlign="middle"
           stackable
-          columns={5}
+          columns={3}
         >
           <Grid.Column>
             <Header as="h1" textAlign="center" className="slide-in-left">
