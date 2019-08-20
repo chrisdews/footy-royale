@@ -33,9 +33,9 @@ class App extends React.Component {
         this.props.history.push('/login')
       } else {
         this.setState({ currentUser: data }, () => {
-          this.fetchAllCurrentWeekData();
+          this.fetchAllCurrentWeekData()
+            .then(() => this.props.history.push('/game'))
         });
-        // this.props.history.push('/dashboard')
       }
     })
   };
