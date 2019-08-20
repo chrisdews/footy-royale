@@ -71,7 +71,8 @@ h5 {
 
 
 .game-loading {
-  margin-top: 50%;
+  top: 50%;
+  position: absolute;
 }
 
 .footy-title-container {
