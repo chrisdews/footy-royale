@@ -13,7 +13,8 @@ const LazyComponent = (condition, component) =>
 class App extends React.Component {
   state = {
     allCurrentWeekData: null,
-    currentUser: null
+    currentUser: null,
+    errors: null
   };
 
   setLoggedInUser = user => {
@@ -28,15 +29,20 @@ class App extends React.Component {
     API.validateUser()
     .then(data => {
       if (data.error) {
-        console.error(data.error)
+        this.setState({errors: data.error})
         // display some error
-        this.props.history.push('/login')
+        this.props.history.push('/')
       } else {
         this.setState({ currentUser: data }, () => {
           this.fetchAllCurrentWeekData()
             .then(() => this.props.history.push('/game'))
         });
       }
+    })
+    .catch(e => {
+      this.setState({errors: e})
+      API.clearToken()
+      this.props.history.push('/')
     })
   };
 
@@ -76,6 +82,10 @@ class App extends React.Component {
     const allCurrentWeekData = this.state.allCurrentWeekData;
 
     return (
+      <React.Fragment>
+      {
+        this.state.errors && this.state.errors
+      }
       <Router>
         <React.Fragment>
           <Route
@@ -90,9 +100,9 @@ class App extends React.Component {
             
           />
 
-<Route
+          <Route
             exact
-            path="/login"
+            path={["/login", "/signup"]}
             render={props =>
               LazyComponent(
                 true,
@@ -128,6 +138,7 @@ class App extends React.Component {
           />
         </React.Fragment>
       </Router>
+      </React.Fragment>
     );
   }
 }

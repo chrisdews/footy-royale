@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Grid, Header, Modal, Image } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Modal, Image, Segment } from "semantic-ui-react";
 
 
 import { Redirect } from "react-router";
@@ -24,8 +24,8 @@ class Home extends React.Component {
 
     API.userLogin(newuserObj)
       .then(user => this.props.setLoggedInUser(user))
-      .then(this.setState({ delayLogin: true }))
-      .then(this.delayRedirect());
+      .then(() => this.setState({ delayLogin: true }))
+      .then(this.delayRedirect);
   };
 
   delayRedirect = () => {
@@ -44,8 +44,11 @@ class Home extends React.Component {
 
     API.userSignUp(newuserObj)
       .then(user => this.props.setLoggedInUser(user))
-      .then(this.setState({ delayLogin: true }))
-      .then(this.delayRedirect())
+      .then(() => this.setState({ delayLogin: true }))
+      .then(this.delayRedirect)
+      .catch(e => {
+        this.setState({errors: e})
+      })
       
   };
 
@@ -256,6 +259,9 @@ class Home extends React.Component {
                         <Button.Content visible> SIGN UP NOW </Button.Content>
                         <Button.Content hidden> IF YOU WANT TO </Button.Content>
                       </Button>
+                      {
+                        this.state.errors && <Segment inverted>{this.state.errors}</Segment>
+                      }
                     </Form>
                   </Grid.Column>
                 </Grid>

@@ -1,6 +1,5 @@
 
-const base_url = 'https://footy-royale-backend.herokuapp.com'
-// const base_url = 'http://localhost:3000'
+const base_url = process.env.REACT_APP_DEV ? 'http://localhost:3000' : 'https://footy-royale-backend.herokuapp.com'
 
 const allData = `${base_url}/alldata`
 const predictionsUrl = `${base_url}/predictions`;
@@ -10,8 +9,25 @@ const usersUrl = `${base_url}/users`;
 const loginUrl = `${base_url}/login`;
 const validateUrl = `${base_url}/validate`;
 
+const jsonify = res => {
+  if (res.ok) {
+    return res.json()
+  } else {
+    try {
+      return res.json()
+        .then(data => {
+          throw data.errors
+        })
+    } catch(e) {
+      throw (["Oops something went wrong"])
+    }
+  }
+}
+
 const handleServerError = errors => {
-  console.error("Error:", errors);
+  if (errors.toString() == 'SyntaxError: Unexpected end of JSON input') {
+    throw (["Oops something went wrong"])
+  }
   throw errors;
 };
 
@@ -21,7 +37,7 @@ const fetchAllData = () => {
       Authorization: localStorage.token
     }
   })
-    .then(resp => resp.json())
+    .then(jsonify)
     .catch(handleServerError);
 };
 
@@ -34,7 +50,7 @@ const postPrediction = newPredictionObj =>
     },
     body: JSON.stringify({ newPredictionObj })
   })
-    .then(resp => resp.json())
+    .then(jsonify)
     .catch(handleServerError);
 
 const submitScore = submitObj =>
@@ -46,7 +62,7 @@ const submitScore = submitObj =>
     },
     body: JSON.stringify({ submitObj })
   })
-    .then(resp => resp.json())
+    .then(jsonify)
     .catch(handleServerError);
 
 const updateRound = leagueObj =>
@@ -58,7 +74,7 @@ const updateRound = leagueObj =>
     },
     body: JSON.stringify({ leagueObj })
   })
-    .then(resp => resp.json())
+    .then(jsonify)
     .catch(handleServerError);
 
 const handleUser = data => {
@@ -76,7 +92,7 @@ fetch(loginUrl, {
   },
   body: JSON.stringify({ user: newuserObj })
 })
-  .then(resp => resp.json())
+  .then(jsonify)
   .then(handleUser)
   .catch(handleServerError);
 
@@ -88,19 +104,19 @@ const userSignUp = newuserObj =>
     },
     body: JSON.stringify({ user: newuserObj })
   })
-    .then(resp => resp.json())
+    .then(jsonify)
     .then(handleUser)
     .catch(handleServerError);
 
     const validateUser = () => {
       if (!localStorage.getItem('token') || localStorage.getItem('token') == 'undefined') 
-        return Promise.resolve({ error: 'no token' })
+        return Promise.reject()
   
       return fetch(validateUrl, {
           headers: {
             Authorization: localStorage.token
           }
-      }).then(resp => resp.json())
+      }).then(jsonify)
           .then(handleUser)
           .catch(handleServerError)
   }

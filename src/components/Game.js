@@ -6,6 +6,7 @@ import WaitingSelection from "./WaitingSelection";
 import User from "./User";
 import PreviousPredictionsContainer from "./PreviousPredictionsContainer";
 import API from "../adapters/API";
+import { Link } from 'react-router-dom'
 
 const WaitingComponent = (condition, component) =>
   condition ? component : <WaitingSelection />;
@@ -164,7 +165,8 @@ class Game extends React.Component {
                   // type="submit"
                   // value="Submit"
                   onClick={this.handleClick}
-                  href="/login"
+                  as={Link}
+                  to="/login"
                 >
                   <Button.Content visible> LOG OUT</Button.Content>
                   <Button.Content hidden>
