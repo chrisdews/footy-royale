@@ -1,10 +1,14 @@
-const allData = "http://localhost:3000/alldata";
-const predictionsUrl = "http://localhost:3000/predictions";
-const matchesUrl = "http://localhost:3000/matches";
-const leaguesUrl = "http://localhost:3000/leagues";
-const usersUrl = "http://localhost:3000/users";
-const loginUrl = "http://localhost:3000/login";
-const validateUrl = "http://localhost:3000/validate";
+
+// const base_url = 'https://footy-royale-backend.herokuapp.com'
+const base_url = 'http://localhost:3000'
+
+const allData = `${base_url}/alldata`
+const predictionsUrl = `${base_url}/predictions`;
+const matchesUrl = `${base_url}/matches`;
+const leaguesUrl = `${base_url}/leagues`;
+const usersUrl = `${base_url}/users`;
+const loginUrl = `${base_url}/login`;
+const validateUrl = `${base_url}/validate`;
 
 const handleServerError = errors => {
   console.error("Error:", errors);

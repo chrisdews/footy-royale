@@ -71,6 +71,7 @@ class Game extends React.Component {
   handleClick = () => {
     API.clearToken();
   };
+  
 
   render() {
     const selectedTeam = this.state.selectedTeam;
@@ -91,7 +92,7 @@ class Game extends React.Component {
           <Grid.Column className="game-page-balls">
             <Grid
               id="football-animation-container"
-              columns={3}
+              
               style={{ height: "10vh" }}
               textAlign="center"
               verticalAlign="middle"

@@ -45,7 +45,8 @@ class Home extends React.Component {
     API.userSignUp(newuserObj)
       .then(user => this.props.setLoggedInUser(user))
       .then(this.setState({ delayLogin: true }))
-      .then(this.delayRedirect());
+      .then(this.delayRedirect())
+      
   };
 
   handleChange = e => {
@@ -67,7 +68,7 @@ class Home extends React.Component {
           textAlign="center"
           verticalAlign="middle"
           stackable
-          columns={3}
+          columns={5}
         >
           <Grid.Column>
             <Header as="h1" textAlign="center" className="slide-in-left">
