@@ -1,6 +1,6 @@
 
-// const base_url = 'https://footy-royale-backend.herokuapp.com'
-const base_url = 'http://localhost:3000'
+const base_url = 'https://footy-royale-backend.herokuapp.com'
+// const base_url = 'http://localhost:3000'
 
 const allData = `${base_url}/alldata`
 const predictionsUrl = `${base_url}/predictions`;
