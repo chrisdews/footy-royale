@@ -55,7 +55,8 @@ class Game extends React.Component {
 
     const newPredictionObj = {
       match_id: this.state.fixture.id,
-      team_id: this.state.selectedTeam.db_id,
+      team_id: this.state.selectedTeam.id,
+      img_id: this.state.selectedTeam.db_id,
       user_id: this.props.currentUser.id,
       league_id: this.props.allCurrentWeekData.league.id,
       royale_round: this.props.allCurrentWeekData.league.round_number

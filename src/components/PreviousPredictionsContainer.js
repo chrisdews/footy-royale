@@ -22,7 +22,7 @@ class PreviousPredictionsContainer extends React.Component {
                 <Grid.Column>
                   <PreviousPredictionsCard
                     prediction={pred}
-                    predTeamID={pred.team_id}
+                    predTeamImgID={pred.img_id}
                     allTeams={this.props.allCurrentWeekData.league.all_teams}
                   />
                 </Grid.Column>

@@ -14,7 +14,7 @@ class PreviousPredictionsCard extends React.Component {
           verticalAlign="middle"
         >
           <Grid.Row>
-            {this.props.predTeamID ? (
+            {this.props.predTeamImgID ? (
               <div>
               <h5>
                 Round {this.props.prediction.royale_round}{" "}
@@ -24,7 +24,7 @@ class PreviousPredictionsCard extends React.Component {
                   </h5>
                 
                 <img
-                  src={require(`../images/logos/${this.props.predTeamID}.png`)}
+                  src={require(`../images/logos/${this.props.predTeamImgID}.png`)}
                   alt="previous selected team logo"
                 />
               </div>
