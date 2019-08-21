@@ -31,6 +31,16 @@ const handleServerError = errors => {
   throw errors;
 };
 
+const fetchFPL = () => {
+  return fetch("https://cors-anywhere.herokuapp.com/https://fantasy.premierleague.com/api/fixtures/?event=1", {
+    headers: {
+      Authorization: localStorage.token
+    }
+  })
+    .then(jsonify)
+    .catch(handleServerError);
+};
+
 const fetchAllData = () => {
   return fetch(allData, {
     headers: {
@@ -135,5 +145,6 @@ export default {
   userSignUp,
   userLogin,
   validateUser,
-  clearToken
+  clearToken,
+  fetchFPL
 };

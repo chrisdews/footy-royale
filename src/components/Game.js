@@ -1,5 +1,12 @@
 import React from "react";
-import { Grid, Header, Button, Responsive, Image } from "semantic-ui-react";
+import {
+  Grid,
+  Header,
+  Button,
+  Responsive,
+  Image,
+  Modal
+} from "semantic-ui-react";
 import FixtureCard from "./FixtureCard";
 import SelectedTeamCard from "./SelectedTeamCard";
 import WaitingSelection from "./WaitingSelection";
@@ -133,9 +140,9 @@ class Game extends React.Component {
               </Grid.Row>
 
               <Grid.Row>
-                <Responsive minWidth={1000}>
+                {/* <Responsive minWidth={1000}>
                   <h5>PICK A WINNING TEAM THIS GAME-WEEK OR YOU'RE OUT!</h5>
-                </Responsive>
+                </Responsive> */}
               </Grid.Row>
             </Grid>
           </Grid.Column>
@@ -152,10 +159,12 @@ class Game extends React.Component {
             </Header>
           </Grid.Column>
 
-          <Grid.Column>
+          <Grid.Column id="buttons-logout-container">
             <Responsive minWidth={500}>
               <h3> {this.props.currentUser.username} </h3>
+              </Responsive>
               <Button
+                id="log-out-button"
                 animated="fade"
                 color="yellow"
                 // type="submit"
@@ -170,10 +179,57 @@ class Game extends React.Component {
                   {this.props.currentUser.username}{" "}
                 </Button.Content>
               </Button>
-              {this.props.currentUser.username === 'dewsy' ? (
+
+              <Modal
+                trigger={
+                  <Button id="rules-button" animated="fade" color="yellow">
+                    <Button.Content visible> RULES </Button.Content>
+                    <Button.Content hidden> RULES! </Button.Content>
+                  </Button>
+                }
+                basic
+                size="small"
+                closeIcon
+              >
+                <Modal.Content>
+                  <Grid
+                    textAlign="center"
+                    verticalAlign="middle"
+                    stackable
+                    columns={3}
+                  >
+                    <Grid.Column className="sign-up-container">
+                      <Header
+                        as="h1"
+                        textAlign="center"
+                        className="slide-in-right"
+                      >
+                        {" "}
+                        RULES{" "}
+                      </Header>
+
+                      <p>Each player must select a Premier League team from the next round of fixtures. Remember to save your prediction!</p>
+
+                      <p>If your selected team wins their match, you progress to the next round.</p>
+
+                      <p>If your selected team draws or loses, you are out!</p>
+
+                      <p>You may only select each team once, so choose carefully.</p>
+
+                      <p>The game ends when only one player remains. They will be crowned the king of FOOTY ROYALE and should be treated as such.</p>
+
+                      <p>Once the game ends, all registered users will be ressurected and the game begins with all teams available once again </p>
+
+                      <p>Good Luck!</p>
+                    </Grid.Column>
+                  </Grid>
+                </Modal.Content>
+              </Modal>
+
+              {this.props.currentUser.username === "dewsy" ? (
                 <Button href="/update">Add Results </Button>
               ) : null}
-            </Responsive>
+            
             <br />
 
             <br />
@@ -229,8 +285,7 @@ class Game extends React.Component {
           </Grid.Column>
 
           <Grid.Column>
-
-          <Grid.Row>
+            <Grid.Row>
               <Header as="h4" textAlign="center" className="stats-title">
                 Your Previous Selections
               </Header>
@@ -277,8 +332,6 @@ class Game extends React.Component {
                 </Grid.Column>
               ))}
             </Grid>
-
-            
           </Grid.Column>
         </Grid>
       </>

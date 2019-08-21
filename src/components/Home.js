@@ -130,7 +130,9 @@ class Home extends React.Component {
               ROYALE{" "}
             </Header>
 
-            <Form size="mini" onSubmit={this.handleSubmitLogin}>
+            <h5 id="sub-title-home">A PREMIER LEAGUE PREDICTION GAME</h5>
+
+            <Form size="small" onSubmit={this.handleSubmitLogin} id="home-page-form">
               <Form.Field>
                 <input
                   type="text"
@@ -150,16 +152,16 @@ class Home extends React.Component {
                 value="Submit"
                 loading={delayLogin}
               >
-                <Button.Content visible> LOG IN NOW </Button.Content>
-                <Button.Content hidden> IF YOU WANT TO </Button.Content>
+                <Button.Content visible> LOG IN </Button.Content>
+                <Button.Content hidden> GO! </Button.Content>
               </Button>
             </Form>
-
+          <h5 id="home-account-text">NO ACCOUNT?</h5>
             <Modal
               trigger={
                 <Button id="sign-up-button" animated="fade" color="yellow">
                   <Button.Content visible> SIGN UP </Button.Content>
-                  <Button.Content hidden> DO IT </Button.Content>
+                  <Button.Content hidden> GO! </Button.Content>
                 </Button>
               }
               basic
@@ -250,7 +252,7 @@ class Home extends React.Component {
                           placeholder="confirm password"
                         />
                       </Form.Field>
-
+                      
                       <Button
                         animated="fade"
                         color="yellow"
@@ -264,8 +266,8 @@ class Home extends React.Component {
                         }
                         loading={delayLogin}
                       >
-                        <Button.Content visible> SIGN UP NOW </Button.Content>
-                        <Button.Content hidden> IF YOU WANT TO </Button.Content>
+                        <Button.Content visible> SIGN UP </Button.Content>
+                        <Button.Content hidden> GO! </Button.Content>
                       </Button>
                       {this.state.errors && (
                         <Segment inverted>{this.state.errors}</Segment>

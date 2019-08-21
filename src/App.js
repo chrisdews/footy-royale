@@ -44,6 +44,8 @@ class App extends React.Component {
       API.clearToken()
       this.props.history.push('/')
     })
+
+    API.fetchFPL().then(data => console.log(data))
   };
 
   fetchAllCurrentWeekData = () => {

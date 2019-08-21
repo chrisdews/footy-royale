@@ -76,7 +76,23 @@ h5 {
 }
 
 .footy-title-container {
-  height: 150px;
+  height: 205px;
+}
+
+#buttons-logout-container{
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+#rules-button{
+
+  margin: 0px !important;
+  margin-left: 5px;
+  
+}
+
+#log-out-button {
+
 }
 
 /* animations */
@@ -119,7 +135,8 @@ h5 {
 }
 
 #sign-up-button {
-  margin: 10px;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 
 .ui.yellow,
@@ -394,7 +411,7 @@ h5 {
     font-size: 2.5em !important;
   }
   .footy-title-container {
-    height: 230px;
+    height: 340px;
   }
   .royale-title-home {
     margin-top: -30px !important;
@@ -419,6 +436,31 @@ h5 {
   }
 }
 
+#home-account-text{
+  margin-top: 10px !important;
+}
+
+#sub-title-home{
+  margin-bottom: 10px !important;
+}
+
+#home-page-form{
+  margin-left: 30px;
+  margin-right: 30px;
+
+}
+
+body > div.ui.page.modals.dimmer.transition.visible.active {
+  background-color: rgb(0,0,0,0.95) !important;
+}
+
+@media (min-width: 768px) {
+  .footy-title-container {
+    height: 230px;
+  }
+}
+
+
 @media (min-width: 1000px) {
   h1 {
     font-size: 4em !important;
@@ -433,7 +475,7 @@ h5 {
     font-size: 2.5em !important;
   }
   .footy-title-container {
-    height: 200px;
+    height: 190px;
   }
   .royale-title-home {
     margin-top: -30px !important;
