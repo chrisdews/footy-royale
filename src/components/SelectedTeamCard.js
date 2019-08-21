@@ -19,7 +19,7 @@ class SelectedTeamCard extends React.Component {
               <div className="team-badge-container">
                 <img className="team-badge-image"
                   src={require(`../images/badges/${
-                    this.props.selectedTeam.id
+                    this.props.selectedTeam.db_id
                   }.jpg`)}
                   alt="selected logo"
                 />
