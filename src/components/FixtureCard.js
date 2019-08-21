@@ -54,7 +54,7 @@ class FixtureCard extends React.Component {
             >
               <img
                 src={require(`../images/logos/${
-                  this.props.fixture.team_h.id
+                  this.props.fixture.team_h.db_id
                 }.png`)}
                 alt="team logo"
               />
@@ -82,7 +82,7 @@ class FixtureCard extends React.Component {
             >
               <img
                 src={require(`../images/logos/${
-                  this.props.fixture.team_a.id
+                  this.props.fixture.team_a.db_id
                 }.png`)}
                 alt="team logo"
               />
