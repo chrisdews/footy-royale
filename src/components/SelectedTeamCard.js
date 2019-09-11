@@ -38,18 +38,6 @@ class SelectedTeamCard extends React.Component {
                   SAVE
                 </Button>
               </div>
-
-              {/* <div>
-                {" "}
-                {this.props.currentPrediction &&
-                this.props.currentPrediction.prediction.team_id ===
-                  this.props.selectedTeam.id
-                  ? `Your choice of ${
-                      this.props.selectedTeam.name
-                    } was saved for this week.`
-                  : "click save to confirm"}
-                  this isn't working because not using currentPrediction yet
-              </div> */}
             </div>
           </Grid.Row>
         </Grid>

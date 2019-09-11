@@ -4,7 +4,6 @@ import { Grid } from "semantic-ui-react";
 class PreviousPredictionsCard extends React.Component {
   render() {
     const team_id = this.props.prediction.team_id;
-    
 
     return (
       <>
@@ -16,13 +15,8 @@ class PreviousPredictionsCard extends React.Component {
           <Grid.Row>
             {this.props.predTeamImgID ? (
               <div>
-              <h5>
-                Round {this.props.prediction.royale_round}{" "}
-                {/* {this.props.allTeams
-                  .filter(team => team.id === team_id)
-                  .map(team => team.name)} */}
-                  </h5>
-                
+                <h5>Round {this.props.prediction.royale_round} </h5>
+
                 <img
                   src={require(`../images/logos/${this.props.predTeamImgID}.png`)}
                   alt="previous selected team logo"

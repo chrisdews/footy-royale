@@ -8,12 +8,10 @@ class FixtureCard extends React.Component {
   };
 
   clickHandlerHome = fixture => {
-    // console.log(fixture);
     this.props.teamSelectorHome(fixture);
   };
 
   clickHandlerAway = fixture => {
-    // console.log(fixture);
     this.props.teamSelectorAway(fixture);
   };
 
@@ -26,8 +24,7 @@ class FixtureCard extends React.Component {
 
     const homeTeamGrey = previousUserPredictions.includes(homeTeamId);
     const awayTeamGrey = previousUserPredictions.includes(awayTeamId);
-    // console.log(homeTeamGrey, awayTeamGrey, homeTeamId, awayTeamId, previousUserPredictions)
-
+    
     return (
       <>
         <Grid

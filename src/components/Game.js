@@ -20,11 +20,9 @@ const WaitingComponent = (condition, component) =>
 
 class Game extends React.Component {
   state = {
-    // logged_in_user: { id: 1, name: "Dewsy" },
     previousUserPredictions: [],
     userActive: "waiting"
   };
-  // user is temporary until logins sorted
 
   componentDidMount = () => {
     console.log(this.props.allCurrentWeekData.league.user_predictions);
@@ -32,13 +30,6 @@ class Game extends React.Component {
     this.setState({
       previousUserPredictions: this.props.allCurrentWeekData.league
         .user_predictions
-      // currentPredictionPersist: this.props.allCurrentWeekData.league.user_predictions.find(
-      //   pred => pred.royale_round === 1
-      // ),
-
-      // sets state of current prediction so can show persisting prediction on log in.
-      // set this to equal royale round later
-      // NOT WORKING YET
     });
   };
 
@@ -63,10 +54,6 @@ class Game extends React.Component {
     };
 
     console.log(newPredictionObj);
-
-    // if this.state.previousUserPredictions contains predictions with royale_round, do a patch instead of post.
-    // or maybe do this backend with first_or_create ruby
-    // if prediction has already been submitted, offer another link to PATCH
     API.postPrediction(newPredictionObj).then(currentPrediction =>
       this.setState({
         previousUserPredictions: [
@@ -123,11 +110,6 @@ class Game extends React.Component {
                   className="roll-in-left"
                 />
 
-                {/* <Image
-                  src={require("../images/crown.png")}
-                  id="crown"
-                  
-                /> */}
                 <Image
                   src={require("../images/football.png")}
                   id="football-4"
@@ -141,9 +123,6 @@ class Game extends React.Component {
               </Grid.Row>
 
               <Grid.Row>
-                {/* <Responsive minWidth={1000}>
-                  <h5>PICK A WINNING TEAM THIS GAME-WEEK OR YOU'RE OUT!</h5>
-                </Responsive> */}
               </Grid.Row>
             </Grid>
           </Grid.Column>
@@ -168,8 +147,6 @@ class Game extends React.Component {
                 id="log-out-button"
                 animated="fade"
                 color="yellow"
-                // type="submit"
-                // value="Submit"
                 onClick={this.handleClick}
                 as={Link}
                 to="/login"
