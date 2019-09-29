@@ -26,7 +26,6 @@ class Game extends React.Component {
 
   componentDidMount = () => {
     console.log(this.props.allCurrentWeekData.league.user_predictions);
-    // NOT WORKING THURS EVE
     this.setState({
       previousUserPredictions: this.props.allCurrentWeekData.league
         .user_predictions
